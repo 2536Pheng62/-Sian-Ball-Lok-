@@ -1,0 +1,6 @@
+{
+  "name": "เซียนบอลโลก (Sian Ball Lok)",
+  "description": "ทายผลฟุตบอลโลกตลอดทัวร์นาเมนต์ สะสมคะแนน แข่งกับเพื่อนๆ เพื่อหาผู้ชนะสูงสุด",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

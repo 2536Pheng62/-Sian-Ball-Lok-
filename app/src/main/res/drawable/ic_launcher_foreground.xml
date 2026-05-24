@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Gold Trophy Base (Y: 80 to 86) -->
+    <path android:pathData="M38,82 C38,81 40,79 43,79 L65,79 C68,79 70,81 70,82 L72,86 L36,86 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="36"
+                android:startY="82"
+                android:endX="72"
+                android:endY="82"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#B7791F" />
+                <item android:offset="0.5" android:color="#F6E05E" />
+                <item android:offset="1.0" android:color="#B7791F" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Golden Stem (Y: 53 to 79) -->
+    <path android:pathData="M48,79 C50,72 51,64 47,56 L61,56 C57,64 58,72 60,79 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="47"
+                android:startY="67"
+                android:endX="61"
+                android:endY="67"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#D69E2E" />
+                <item android:offset="0.5" android:color="#FEFCBF" />
+                <item android:offset="1.0" android:color="#B7791F" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Golden Bowl / Wings of Cup (Y: 34 to 56) -->
+    <path android:pathData="M36,36 C36,46 42,56 54,56 C66,56 72,46 72,36 L68,36 C68,44 62,51 54,51 C46,51 40,44 40,36 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="36"
+                android:startY="46"
+                android:endX="72"
+                android:endY="46"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#ECC94B" />
+                <item android:offset="0.5" android:color="#FEFCBF" />
+                <item android:offset="1.0" android:color="#D69E2E" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Embedding Soccer Ball at the top (Center at 54, 33, radius 11) -->
+    <path android:pathData="M54,33m-11,0a11,11 0,1 1,22 0a11,11 0,1 1,-22 0" android:fillColor="#EEEEEE" />
+    
+    <!-- Soccer ball pentagons and lines (stylized black paths) -->
+    <!-- Central Pentagon -->
+    <path android:pathData="M54,28 L58,31 L56,35 L52,35 L50,31 Z" android:fillColor="#1A202C" />
+    <path android:pathData="M54,28 L54,22" android:strokeColor="#1A202C" android:strokeWidth="1.2" />
+    <path android:pathData="M58,31 L64,29" android:strokeColor="#1A202C" android:strokeWidth="1.2" />
+    <path android:pathData="M56,35 L61,39" android:strokeColor="#1A202C" android:strokeWidth="1.2" />
+    <path android:pathData="M52,35 L47,39" android:strokeColor="#1A202C" android:strokeWidth="1.2" />
+    <path android:pathData="M50,31 L44,29" android:strokeColor="#1A202C" android:strokeWidth="1.2" />
+    
+    <!-- Outer edge border line of the ball -->
+    <path android:pathData="M54,22 C48,22 43,26 43,33 C43,40 48,44 54,44 C60,44 65,40 65,33 C65,26 60,22 54,22 Z" 
+        android:strokeColor="#D69E2E" android:strokeWidth="1.5" android:fillColor="#00000000" />
+
+    <!-- A Glowing neon green question mark on the gold Stem to indicate Prediction -->
+    <path
+        android:pathData="M52,60 C52,58 56,58 56,60 C56,62 54,63 54,64 L54,66 M54,69 L54,70"
+        android:strokeColor="#00FF87"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:fillColor="#00000000" />
+    
+    <!-- Glowing Green dot highlights for high-quality neon effect -->
+    <path android:pathData="M54,60m-0.8,0a0.8,0.8 0,1 1,1.6 0a0.8,0.8 0,1 1,-1.6 0" android:fillColor="#00FF87" />
+    <path android:pathData="M54,70m-0.8,0a0.8,0.8 0,1 1,1.6 0a0.8,0.8 0,1 1,-1.6 0" android:fillColor="#00FF87" />
+
+    <!-- Dynamic Bold Glossy Red Arrow pointing diagonally upwards (from left bottom to top right) -->
+    <!-- Stem/tail of the arrow wrapping across the cup stem -->
+    <path android:pathData="M30,68 C34,65 42,55 52,47 L58,52 C48,60 38,70 34,72 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="30"
+                android:startY="70"
+                android:endX="58"
+                android:endY="47"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#9B2C2C" />
+                <item android:offset="0.5" android:color="#E53E3E" />
+                <item android:offset="1.0" android:color="#FEB2B2" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    
+    <!-- Large glossy arrowhead pointing diagonally up-right -->
+    <path android:pathData="M78,30 L64,36 L68,41 L58,49 L62,53 L72,45 L76,49 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="58"
+                android:startY="49"
+                android:endX="78"
+                android:endY="30"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#E53E3E" />
+                <item android:offset="0.8" android:color="#F56565" />
+                <item android:offset="1.0" android:color="#FFF1F2" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+</vector>
