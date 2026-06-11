@@ -1,0 +1,2501 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>เซียนบอลโลก - ถ้วยทำนายผลบอลโลก 2026</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Design Tokens & Theme Variables */
+    :root {
+      --color-bg: #0b0f19;
+      --color-stadium-dark: #0f172a;
+      --color-stadium-light: #1e293b;
+      --color-gold: #fbbf24;
+      --color-green: #10b981;
+      --color-bronze: #d97706;
+      --color-border: #334155;
+      --color-text-white: #f8fafc;
+      --color-text-gray: #94a3b8;
+      --color-red: #ef4444;
+      --color-blue-accent: #3b82f6;
+      
+      --font-display: 'Outfit', 'Sarabun', 'Inter', sans-serif;
+      --font-body: 'Sarabun', 'Inter', sans-serif;
+      
+      --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      --border-glass: 1px solid rgba(255, 255, 255, 0.08);
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+    }
+
+    /* Global Reset & Base Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--color-bg);
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(15, 23, 42, 0.9) 0, transparent 50%),
+        radial-gradient(at 50% 0%, rgba(30, 41, 59, 0.4) 0, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(16, 185, 129, 0.1) 0, transparent 40%);
+      color: var(--color-text-white);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.6;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Scrollbars */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--color-bg);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--color-border);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--color-text-gray);
+    }
+
+    .app-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 16px 40px 16px;
+    }
+
+    /* Typography */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      color: var(--color-text-white);
+    }
+
+    /* Header & Banner Styles */
+    .app-header {
+      background: rgba(11, 15, 25, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: var(--border-glass);
+      padding: 16px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      margin-bottom: 24px;
+    }
+
+    .header-inner {
+      max-width: 1168px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-title {
+      font-size: 1.5rem;
+      background: linear-gradient(135deg, var(--color-text-white) 30%, var(--color-gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-desc {
+      font-size: 0.8rem;
+      color: var(--color-text-gray);
+      margin-top: 2px;
+    }
+
+    /* User Selection Bar */
+    .user-selector-bar {
+      background: var(--color-stadium-dark);
+      border: var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-glass);
+    }
+
+    .user-selector-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-text-gray);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .user-cards-scroll {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+    }
+
+    .user-card {
+      flex: 0 0 auto;
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 10px 16px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 110px;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .user-card:hover {
+      transform: translateY(-2px);
+      background: rgba(30, 41, 59, 0.9);
+      border-color: var(--color-text-gray);
+    }
+
+    .user-card.active {
+      background: var(--color-stadium-light);
+      border-width: 2px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .user-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: #fff;
+      margin-bottom: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    .google-badge {
+      position: absolute;
+      bottom: 30px;
+      right: 12px;
+      background: white;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8px;
+      font-weight: 900;
+      color: var(--color-blue-accent);
+    }
+
+    .user-card-name {
+      font-size: 0.85rem;
+      font-weight: 700;
+      max-width: 90px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: center;
+    }
+
+    .user-card-score {
+      font-size: 0.75rem;
+      color: var(--color-gold);
+      font-weight: 800;
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    /* Grid Layout */
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    @media (min-width: 992px) {
+      .grid-container {
+        grid-template-columns: 2fr 1fr;
+      }
+    }
+
+    .panel-card {
+      background: var(--color-stadium-light);
+      border: var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-glass);
+    }
+
+    .panel-title {
+      font-size: 1.25rem;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 12px;
+    }
+
+    /* Tab Navigation */
+    .tabs-container {
+      display: flex;
+      background: #090e18;
+      border: var(--border-glass);
+      border-radius: var(--radius-md);
+      padding: 4px;
+      margin-bottom: 24px;
+    }
+
+    .flag-svg {
+      display: inline-block;
+      vertical-align: middle;
+      border-radius: 2px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.35);
+      margin-right: 6px;
+    }
+
+    .tab-btn {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: var(--color-text-gray);
+      padding: 12px 16px;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.95rem;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+    }
+
+    .tab-btn:hover {
+      color: var(--color-text-white);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .tab-btn.active {
+      background: var(--color-stadium-light);
+      color: var(--color-gold);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    /* Forms */
+    .form-group {
+      margin-bottom: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-text-gray);
+    }
+
+    .form-input {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      color: var(--color-text-white);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      width: 100%;
+      transition: border-color 0.2s;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--color-gold);
+    }
+
+    /* Buttons */
+    .btn {
+      background: var(--color-border);
+      color: var(--color-text-white);
+      border: none;
+      border-radius: 30px;
+      padding: 10px 20px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn:hover:not(:disabled) {
+      transform: translateY(-1px);
+      filter: brightness(1.15);
+    }
+
+    .btn:active:not(:disabled) {
+      transform: translateY(1px);
+    }
+
+    .btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .btn-primary {
+      background: var(--color-gold);
+      color: #0f172a;
+    }
+
+    .btn-success {
+      background: var(--color-green);
+      color: white;
+    }
+
+    .btn-danger {
+      background: var(--color-red);
+      color: white;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--color-border);
+      color: var(--color-text-gray);
+    }
+
+    .btn-outline:hover:not(:disabled) {
+      border-color: var(--color-text-gray);
+      color: var(--color-text-white);
+    }
+
+    /* Match Card */
+    .match-card {
+      background: rgba(15, 23, 42, 0.4);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-bottom: 16px;
+      transition: transform 0.2s, border-color 0.2s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .match-card:hover {
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .match-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .match-stage-tag {
+      background: #0f172a;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--color-gold);
+    }
+
+    .match-status-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    .status-pending {
+      background: rgba(148, 163, 184, 0.15);
+      color: var(--color-text-gray);
+    }
+
+    .status-finished {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--color-green);
+    }
+
+    .status-locked {
+      background: rgba(239, 68, 68, 0.15);
+      color: var(--color-red);
+    }
+
+    .match-vs-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 16px 0;
+      gap: 16px;
+    }
+
+    .team-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .team-container.team-left {
+      justify-content: flex-end;
+    }
+
+    .team-container.team-right {
+      justify-content: flex-start;
+    }
+
+    .team-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .team-flag {
+      font-size: 1.8rem;
+    }
+
+    .score-pill {
+      background: #0f172a;
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--color-gold);
+      min-width: 65px;
+      text-align: center;
+      border: 1px solid var(--color-border);
+    }
+
+    .vs-text {
+      font-size: 0.75rem;
+      color: var(--color-text-gray);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    /* Prediction Choices */
+    .choices-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .choice-btn {
+      flex: 1;
+      background: transparent;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      padding: 10px 4px;
+      color: var(--color-text-gray);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .choice-btn:hover:not(:disabled) {
+      border-color: var(--color-gold);
+      color: var(--color-text-white);
+    }
+
+    .choice-btn.selected {
+      background: rgba(251, 191, 36, 0.15);
+      border-color: var(--color-gold);
+      color: var(--color-gold);
+      font-weight: 800;
+    }
+
+    .choice-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* Leaderboard Table */
+    .leaderboard-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    .leaderboard-table th {
+      background: #0f172a;
+      color: var(--color-text-gray);
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .leaderboard-table td {
+      padding: 14px 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      vertical-align: middle;
+    }
+
+    .leaderboard-row {
+      transition: background-color 0.2s;
+    }
+
+    .leaderboard-row:hover {
+      background: rgba(255,255,255,0.02);
+    }
+
+    .rank-cell {
+      width: 60px;
+      text-align: center;
+    }
+
+    .player-info-cell {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .champion-badge {
+      font-size: 0.65rem;
+      margin-top: 4px;
+      color: var(--color-text-gray);
+    }
+
+    .correct-champion-text {
+      color: var(--color-green);
+      font-weight: 700;
+    }
+
+    .points-pill {
+      font-weight: 900;
+      font-size: 1.15rem;
+      font-family: var(--font-display);
+    }
+
+    .points-pill-gold {
+      color: var(--color-gold);
+    }
+
+    /* Modals */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(4, 6, 10, 0.8);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+      padding: 16px;
+    }
+
+    .modal-overlay.show {
+      display: flex;
+    }
+
+    .modal-content {
+      background: var(--color-stadium-light);
+      border: var(--border-glass);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 500px;
+      padding: 24px;
+      box-shadow: var(--shadow-glass);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-title {
+      font-size: 1.3rem;
+      color: var(--color-gold);
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .color-circles-grid {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin: 12px 0;
+    }
+
+    .color-circle {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 0.2s;
+      border: 3px solid transparent;
+    }
+
+    .color-circle:hover {
+      transform: scale(1.1);
+    }
+
+    .color-circle.selected {
+      border-color: var(--color-text-white);
+      box-shadow: 0 0 10px rgba(255,255,255,0.4);
+    }
+
+    .champion-options-row {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 6px 0;
+    }
+
+    .champion-option-pill {
+      flex: 0 0 auto;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--color-border);
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .champion-option-pill:hover {
+      border-color: var(--color-text-gray);
+    }
+
+    .champion-option-pill.selected {
+      background: var(--color-gold);
+      color: #0f172a;
+      border-color: var(--color-gold);
+    }
+
+    /* PIN Lock Screen */
+    .pin-dots-container {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .pin-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid var(--color-border);
+    }
+
+    .pin-dot.filled {
+      background: var(--color-gold);
+      box-shadow: 0 0 8px var(--color-gold);
+    }
+
+    .pin-keyboard {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      max-width: 280px;
+      margin: 0 auto;
+    }
+
+    .pin-key {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--color-border);
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      cursor: pointer;
+      justify-self: center;
+      transition: background 0.1s, transform 0.1s;
+      color: var(--color-text-white);
+    }
+
+    .pin-key:hover {
+      background: var(--color-stadium-dark);
+    }
+
+    .pin-key:active {
+      transform: scale(0.92);
+    }
+
+    /* Alerts */
+    .alert-card {
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-bottom: 16px;
+      font-size: 0.85rem;
+      border-left: 4px solid;
+    }
+
+    .alert-info {
+      background: rgba(59, 130, 246, 0.1);
+      border-color: var(--color-blue-accent);
+      color: #93c5fd;
+    }
+
+    .alert-warning {
+      background: rgba(217, 119, 6, 0.15);
+      border-color: var(--color-bronze);
+      color: #fcd34d;
+    }
+
+    .alert-danger {
+      background: rgba(239, 68, 68, 0.1);
+      border-color: var(--color-red);
+      color: #fca5a5;
+    }
+
+    /* Admin controls */
+    .admin-match-controls {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .score-control-btn {
+      background: var(--color-stadium-dark);
+      border: 1px solid var(--color-border);
+      color: var(--color-text-white);
+      border-radius: var(--radius-sm);
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 1.1rem;
+    }
+
+    .score-control-btn:hover {
+      border-color: var(--color-gold);
+    }
+
+    .admin-match-score-adjuster {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .time-input {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      padding: 6px 10px;
+      color: var(--color-text-white);
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- App Header -->
+  <header className="app-header">
+    <div class="header-inner">
+      <div class="logo-section">
+        <!-- SVG Trophy Icon -->
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.45 1-1 1H4v2h16v-2h-5c-.55 0-1-.45-1-1v-2.34"/><path d="M12 2a6 6 0 0 0-6 6v5a6 6 0 0 0 12 0V8a6 6 0 0 0-6-6z"/></svg>
+        <div>
+          <h1 class="logo-title" style="margin-left: 5px;">ถ้วยทำนายผลบอลโลก 2026</h1>
+          <p class="logo-desc">ทัศนะฟุตบอลโลก สรุปผลคะแนนกลุ่มเพื่อน</p>
+        </div>
+      </div>
+      
+      <div style="display: flex; gap: 10px;">
+        <button class="btn btn-outline" onclick="toggleHelpModal(true)">
+          <!-- SVG Info Icon -->
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          คู่มือและกฎหมาย
+        </button>
+        <button class="btn btn-primary" onclick="toggleAddUserModal(true)">
+          <!-- SVG UserPlus Icon -->
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+          สร้างกลุ่มทาย
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-container">
+    
+    <!-- User Switcher Section -->
+    <section class="user-selector-bar">
+      <h3 class="user-selector-title">
+        <!-- SVG Users Icon -->
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        สลับผู้ใช้งานเพื่อกรอกการทำนาย:
+      </h3>
+      <div class="user-cards-scroll" id="user-cards-scroll-container">
+        <!-- Dynamic User Cards generated via JS -->
+      </div>
+    </section>
+
+    <!-- Active User Display Bar -->
+    <div id="active-user-display-bar" style="display: none;">
+      <!-- Dynamic banner injected via JS -->
+    </div>
+
+    <!-- Tab Bar -->
+    <nav class="tabs-container">
+      <button class="tab-btn active" id="tab-btn-0" onclick="switchTab(0)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+        สรุปผล / ตาราง
+      </button>
+      <button class="tab-btn" id="tab-btn-1" onclick="switchTab(1)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        ส่งพยากรณ์ผล
+      </button>
+      <button class="tab-btn" id="tab-btn-2" onclick="switchTab(2)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        ผลบอลสนามจริง (แอดมิน)
+      </button>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main id="tab-content-container" class="animate-fade-in">
+      <!-- Dynamic content injected depending on active tab -->
+    </main>
+
+  </div>
+
+  <!-- --- MODALS --- -->
+
+  <!-- 1. Add User Profile Modal -->
+  <div class="modal-overlay" id="add-user-modal">
+    <div class="modal-content">
+      <h3 class="modal-title">🏁 สมัครกลุ่มทำนายผลบอลโลก</h3>
+      <form onsubmit="createNewUser(event)">
+        <!-- Google mock login button -->
+        <div onclick="openGoogleMockFromAdd()" style="background: white; color: #0f172a; padding: 10px 16px; border-radius: 30px; text-align: center; font-weight: bold; cursor: pointer; margin-bottom: 16px; display: flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid var(--color-border)">
+          <span style="font-weight: 900; color: #4285f4">G</span>
+          <span style="font-weight: 900; color: #ea4335">o</span>
+          <span style="font-weight: 900; color: #fbbc05">o</span>
+          <span style="font-weight: 900; color: #34a853">g</span>
+          <span style="font-weight: 900; color: #ea4335">l</span>
+          <span style="font-weight: 900; color: #4285f4">e</span>
+          <span>สมัครด่วนด้วยบัญชี Google</span>
+        </div>
+
+        <div style="text-align: center; color: var(--color-text-gray); font-size: 0.75rem; margin-bottom: 16px;">
+          — หรือกรอกรายละเอียดบัญชีด้านล่าง —
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">ชื่อผู้เล่น (เพื่อนๆ โหวต):</label>
+          <input type="text" class="form-input" id="new-user-name" placeholder="เช่น พี่แดง, สมชาย" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">ตั้งรหัสผ่าน PIN 4 หลัก (เพื่อป้องกันเพื่อนแอบเปลี่ยนคำทำนาย):</label>
+          <input type="password" class="form-input" id="new-user-pin" maxlength="4" placeholder="กรอกตัวเลข 4 หลัก (หากไม่ต้องการล็อก ให้เว้นว่างไว้)" oninput="this.value=this.value.replace(/\D/g,'')">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">เลือกสีสัญลักษณ์ผู้เล่น:</label>
+          <div class="color-circles-grid" id="color-presets-container">
+            <!-- Loaded by JS -->
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">ทายทีมที่จะได้แชมป์โลก (โบนัส +5 คะแนน):</label>
+          <select class="form-input" id="new-user-champion" style="background: var(--color-stadium-dark);">
+            <!-- Loaded by JS -->
+          </select>
+        </div>
+
+        <div style="display: flex; gap: 12px; margin-top: 24px;">
+          <button type="button" class="btn btn-outline" onclick="toggleAddUserModal(false)" style="flex: 1;">ยกเลิก</button>
+          <button type="submit" class="btn btn-primary" style="flex: 1;">สร้างโปรไฟล์</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. Google Login Mockup Modal -->
+  <div class="modal-overlay" id="google-login-modal">
+    <div class="modal-content" style="max-width: 420px; background: #fff; color: #1f2937;">
+      <div style="text-align: center; margin-bottom: 16px;">
+        <span style="font-size: 1.6rem; font-weight: bold;">
+          <span style="color: #4285f4">G</span>
+          <span style="color: #ea4335">o</span>
+          <span style="color: #fbbc05">o</span>
+          <span style="color: #34a853">g</span>
+          <span style="color: #ea4335">l</span>
+          <span style="color: #4285f4">e</span>
+        </span>
+      </div>
+      <h3 style="font-size: 1.15rem; font-weight: bold; text-align: center; color: #111827; margin-bottom: 6px;">
+        ลงทะเบียนเข้าสู่ระบบด้วย Google
+      </h3>
+      <p style="font-size: 0.8rem; color: #6b7280; text-align: center; margin-bottom: 20px; line-height: 1.4;">
+        เลือกบัญชีจำลองด้านล่างเพื่อเริ่มบันทึกทัศนะผลฟุตบอลโลกของคุณอย่างปลอดภัย
+      </p>
+
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <div onclick="selectGoogleMock('Pang', 'pang8577@gmail.com', '#EA4335')" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #f3f4f6; border-radius: 10px; cursor: pointer; border: 1px solid #e5e7eb;">
+          <div style="width: 36px; height: 36px; border-radius: 50%; background: #EA4335; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold;">P</div>
+          <div>
+            <div style="font-weight: bold; fontSize: 0.9rem; color: #1f2937;">Pang</div>
+            <div style="font-size: 0.75rem; color: #4b5563;">pang8577@gmail.com</div>
+          </div>
+        </div>
+
+        <div onclick="selectGoogleMock('คุณสิริวร', 'siriwor.w@gmail.com', '#34A853')" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #f3f4f6; border-radius: 10px; cursor: pointer; border: 1px solid #e5e7eb;">
+          <div style="width: 36px; height: 36px; border-radius: 50%; background: #34A853; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold;">ส</div>
+          <div>
+            <div style="font-weight: bold; fontSize: 0.9rem; color: #1f2937;">คุณสิริวร</div>
+            <div style="font-size: 0.75rem; color: #4b5563;">siriwor.w@gmail.com</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 20px; text-align: center;">
+        <button class="btn btn-outline" onclick="toggleGoogleModal(false)" style="color: #4b5563; border-color: #d1d5db; padding: 8px 24px;">ยกเลิก</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. PIN Authenticate Modal -->
+  <div class="modal-overlay" id="pin-auth-modal">
+    <div class="modal-content" style="max-width: 340px;">
+      <h3 class="modal-title">🔓 กรอกรหัส PIN ผู้ใช้งาน</h3>
+      <p style="text-align: center; color: var(--color-text-gray); font-size: 0.8rem; margin-bottom: 14px;">
+        กำลังเข้าสู่โปรไฟล์ของ: <strong id="pin-auth-target-name">...</strong>
+      </p>
+
+      <div class="pin-dots-container">
+        <div class="pin-dot" id="pin-dot-0"></div>
+        <div class="pin-dot" id="pin-dot-1"></div>
+        <div class="pin-dot" id="pin-dot-2"></div>
+        <div class="pin-dot" id="pin-dot-3"></div>
+      </div>
+
+      <p id="pin-auth-error" style="color: var(--color-red); font-size: 0.8rem; text-align: center; margin-bottom: 12px; font-weight: bold; display: none;">
+        ❌ รหัสผ่าน PIN ไม่ถูกต้อง กรุณากรอกใหม่
+      </p>
+
+      <div class="pin-keyboard">
+        <button class="pin-key" onclick="pressPinKey(1)">1</button>
+        <button class="pin-key" onclick="pressPinKey(2)">2</button>
+        <button class="pin-key" onclick="pressPinKey(3)">3</button>
+        <button class="pin-key" onclick="pressPinKey(4)">4</button>
+        <button class="pin-key" onclick="pressPinKey(5)">5</button>
+        <button class="pin-key" onclick="pressPinKey(6)">6</button>
+        <button class="pin-key" onclick="pressPinKey(7)">7</button>
+        <button class="pin-key" onclick="pressPinKey(8)">8</button>
+        <button class="pin-key" onclick="pressPinKey(9)">9</button>
+        <button class="pin-key" onclick="pressPinBackspace()" style="font-size: 1rem;">⌫</button>
+        <button class="pin-key" onclick="pressPinKey(0)">0</button>
+        <button class="pin-key" onclick="cancelPinAuth()" style="color: var(--color-red); font-size: 0.85rem;">ยกเลิก</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Help & Law Modal -->
+  <div class="modal-overlay" id="help-modal">
+    <div class="modal-content" style="max-width: 540px;">
+      <h3 class="modal-title">📖 คู่มือการใช้งาน & กฎหมายการพนัน</h3>
+      
+      <div style="display: flex; flex-direction: column; gap: 16px; padding-bottom: 16px;">
+        <div class="alert-card alert-info">
+          <h4 style="font-weight: bold; margin-bottom: 6px;">📘 แนะนำขั้นตอนการใช้งาน</h4>
+          <p style="font-size: 0.8rem; line-height: 1.5;">
+            1. <strong>แอดรายชื่อผู้เล่น:</strong> กดปุ่ม "สร้างกลุ่มทาย" เพื่อเพิ่มโปรไฟล์เพื่อน สามารถตั้งรหัส PIN และทีมทำนายแชมป์โลกได้<br/>
+            2. <strong>สลับผู้เล่น:</strong> คลิกแถบการ์ดโปรไฟล์ด้านบน หากมีรหัสผ่าน ให้กรอกรหัส PIN ก่อนเข้าถึงข้อมูลการทาย<br/>
+            3. <strong>ส่งผลพยากรณ์:</strong> ไปแท็บ "ส่งพยากรณ์ผล" ติ๊กเลือก ชนะ/เสมอ ได้ทันที ปุ่มจะล็อกเมื่อเลยเวลาเริ่มเตะจริงเพื่อกันโกง<br/>
+            4. <strong>กรอกผลจริง:</strong> ไปแท็บ "ผลบอลสนามจริง" ให้แอดมินหรือคนกลางบันทึกสกอร์จริง เพื่อให้ระบบคำนวณคะแนนแจกจ่ายอัตโนมัติ!
+          </p>
+        </div>
+
+        <div class="alert-card alert-danger">
+          <h4 style="display: flex; align-items: center; gap: 6px; font-weight: bold; margin-bottom: 6px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            ข้อห้ามและข้อบังคับตามกฎหมาย
+          </h4>
+          <p style="font-size: 0.78rem; line-height: 1.4;">
+            • พระราชบัญญัติการพนัน พ.ศ. 2478: การชักชวน ร่วมสนุก หรือวางเงินเดิมพันพนันบอลในไทยถือว่าผิดกฎหมายอาญา มีโทษทั้งปรับและจำคุก<br/>
+            • เว็บไซต์นี้ออกแบบมาเพื่อความสนุกสนาน เชื่อมความสัมพันธ์ในกลุ่มเพื่อน และเพื่อการส่งเสริมความรู้การวิเคราะห์กีฬาฟุตบอลเท่านั้น ห้ามใช้ในการพนันขันต่อเด็ดขาด<br/>
+            • ดูบอลปลอดภัย ห่างไกลการพนัน ร่วมรักษากีฬาฟุตบอลเชิงสร้างสรรค์!
+          </p>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 12px;">
+        <button class="btn btn-primary" onclick="toggleHelpModal(false)" style="width: 100%;">เข้าใจและยอมรับข้อตกลง 👍</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- --- JAVASCRIPT APP LOGIC --- -->
+  <script>
+    // --- Presets Arrays definitions in JS scope ---
+    const COLOR_PRESETS = ["#FFC107", "#00E676", "#00B0FF", "#E91E63", "#9C27B0", "#FF3D00"];
+    const CHAMPIONS_POOL = [
+      { name: "อาร์เจนตินา", flag: "🇦🇷" },
+      { name: "ฝรั่งเศส", flag: "🇫🇷" },
+      { name: "บราซิล", flag: "🇧🇷" },
+      { name: "อังกฤษ", flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿" },
+      { name: "โปรตุเกส", flag: "🇵🇹" },
+      { name: "เยอรมนี", flag: "🇩🇪" },
+      { name: "สเปน", flag: "🇪🇸" },
+      { name: "เนเธอร์แลนด์", flag: "🇳🇱" },
+      { name: "โครเอเชีย", flag: "🇭🇷" },
+      { name: "ญี่ปุ่น", flag: "🇯🇵" }
+    ];
+
+    const FLAG_SVGS = {
+      "เม็กซิโก": `<svg class="flag-svg" viewBox="0 0 30 20" width="24" height="16"><rect width="10" height="20" fill="#006847"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#c8102e"/><circle cx="15" cy="10" r="2" fill="#8c6239"/></svg>`,
+      "ออสเตรเลีย": `<svg class="flag-svg" viewBox="0 0 30 20" width="24" height="16"><rect width="30" height="20" fill="#00008b"/><path d="M0 0h12v8H0z" fill="#fff"/><path d="M0 0l12 8M0 8l12-8" stroke="#ff0000" stroke-width="1.5"/><path d="M0 4h12M6 0v8" stroke="#ff0000" stroke-width="2.5" stroke-linecap="round"/><circle cx="22.5" cy="5" r="1.5" fill="#fff"/><circle cx="18" cy="12" r="1.5" fill="#fff"/><circle cx="27" cy="12" r="1.5" fill="#fff"/><circle cx="22.5" cy="15" r="1.5" fill="#fff"/><circle cx="22.5" cy="10" r="1.5" fill="#fff"/></svg>`,
+      "แคนาดา": `<svg class="flag-svg" viewBox="0 0 30 15" width="24" height="16"><rect width="7.5" height="15" fill="#ff0000"/><rect x="7.5" width="15" height="15" fill="#fff"/><rect x="22.5" width="7.5" height="15" fill="#ff0000"/><path d="M15 4l1 3h3l-2.5 2 1 3-2.5-2-2.5 2 1-3-2.5-2h3z" fill="#ff0000"/></svg>`,
+      "ญี่ปุ่น": `<svg class="flag-svg" viewBox="0 0 30 20" width="24" height="16" style="border: 1px solid rgba(255,255,255,0.08)"><rect width="30" height="20" fill="#fff"/><circle cx="15" cy="10" r="6" fill="#bc002d"/></svg>`,
+      "สหรัฐอเมริกา": `<svg class="flag-svg" viewBox="0 0 30 16" width="24" height="16"><rect width="30" height="16" fill="#fff"/><path d="M0 0h30v1.23H0zm0 2.46h30v1.23H0zm0 2.46h30v1.23H0zm0 2.46h30v1.23H0zm0 2.46h30v1.23H0zm0 2.46h30v1.23H0zm0 2.46h30v1.23H0z" fill="#b22234"/><rect width="12" height="8.6" fill="#3c3b6e"/><circle cx="2" cy="2" r="0.4" fill="#fff"/><circle cx="4" cy="2" r="0.4" fill="#fff"/><circle cx="6" cy="2" r="0.4" fill="#fff"/><circle cx="8" cy="2" r="0.4" fill="#fff"/><circle cx="10" cy="2" r="0.4" fill="#fff"/><circle cx="3" cy="4" r="0.4" fill="#fff"/><circle cx="5" cy="4" r="0.4" fill="#fff"/><circle cx="7" cy="4" r="0.4" fill="#fff"/><circle cx="9" cy="4" r="0.4" fill="#fff"/></svg>`,
+      "โมร็อกโก": `<svg class="flag-svg" viewBox="0 0 30 20" width="24" height="16"><rect width="30" height="20" fill="#c8102e"/><polygon points="15,6 17.5,14 11,9 19,9 12.5,14" fill="none" stroke="#006233" stroke-width="1.5"/></svg>`,
+      "อาร์เจนตินา": `<svg class="flag-svg" viewBox="0 0 30 20" width="24" height="16"><rect width="30" height="6.6" fill="#74acdf"/><rect y="6.6" width="30" height="6.8" fill="#fff"/><rect y="13.4" width="30" height="6.6" fill="#74acdf"/><circle cx="15" cy="10" r="2" fill="#ffb81c"/></svg>`,
+      "ซาอุดีอาระเบีย": `<svg class="flag-svg" viewBox="0 0 30 20" width="24" height="16"><rect width="30" height="20" fill="#006c35"/><path d="M6 13h18v1H6z" fill="#fff"/><path d="M10 9h10v1H10z" fill="#fff"/></svg>`,
+      "ฝรั่งเศส": `<svg class="flag-svg" viewBox="0 0 30 20" width="24" height="16"><rect width="10" height="20" fill="#002395"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#ed2939"/></svg>`,
+      "ออสเตรีย": `<svg class="flag-svg" viewBox="0 0 30 20" width="24" height="16"><rect width="30" height="6.6" fill="#ed2939"/><rect y="6.6" width="30" height="6.8" fill="#fff"/><rect y="13.4" width="30" height="6.6" fill="#ed2939"/></svg>`,
+      "อังกฤษ": `<svg class="flag-svg" viewBox="0 0 30 18" width="24" height="16" style="border: 1px solid rgba(255,255,255,0.08)"><rect width="30" height="18" fill="#fff"/><rect y="7.2" width="30" height="3.6" fill="#da291c"/><rect x="13.2" width="3.6" height="18" fill="#da291c"/></svg>`,
+      "เกาหลีใต้": `<svg class="flag-svg" viewBox="0 0 30 20" width="24" height="16" style="border: 1px solid rgba(255,255,255,0.08)"><rect width="30" height="20" fill="#fff"/><circle cx="15" cy="10" r="5" fill="#cd2e3a"/><path d="M15 10a5 5 0 0 0 0-10 2.5 2.5 0 0 0 0 5 2.5 2.5 0 0 1 0 5z" fill="#0047a0"/><rect x="4" y="4" width="2" height="4" fill="#000" transform="rotate(30 4 4)"/><rect x="24" y="4" width="2" height="4" fill="#000" transform="rotate(-30 24 4)"/></svg>`,
+      "บราซิล": `<svg class="flag-svg" viewBox="0 0 30 20" width="24" height="16"><rect width="30" height="20" fill="#009739"/><polygon points="15,2 28,10 15,18 2,10" fill="#fedf00"/><circle cx="15" cy="10" r="5" fill="#2d3092"/><path d="M10 10a12 12 0 0 1 10-2" stroke="#fff" stroke-width="0.8" fill="none"/></svg>`,
+      "เซอร์เบีย": `<svg class="flag-svg" viewBox="0 0 30 20" width="24" height="16"><rect width="30" height="6.6" fill="#c8102e"/><rect y="6.6" width="30" height="6.8" fill="#0c4076"/><rect y="13.4" width="30" height="6.6" fill="#fff"/><rect x="7" y="5" width="4" height="8" fill="#c8102e" style="opacity:0.8;"/></svg>`,
+      "สเปน": `<svg class="flag-svg" viewBox="0 0 30 20" width="24" height="16"><rect width="30" height="5" fill="#aa151b"/><rect y="5" width="30" height="10" fill="#f1bf00"/><rect y="15" width="30" height="5" fill="#aa151b"/><circle cx="8" cy="10" r="2" fill="#aa151b"/></svg>`,
+      "สวิตเซอร์แลนด์": `<svg class="flag-svg" viewBox="0 0 20 20" width="18" height="18"><rect width="20" height="20" fill="#d81e05"/><rect x="8" y="4" width="4" height="12" fill="#fff"/><rect x="4" y="8" width="12" height="4" fill="#fff"/></svg>`,
+      "เยอรมนี": `<svg class="flag-svg" viewBox="0 0 30 18" width="24" height="16"><rect width="30" height="6" fill="#000"/><rect y="6" width="30" height="6" fill="#ff0000"/><rect y="12" width="30" height="6" fill="#ffcc00"/></svg>`,
+      "โปรตุเกส": `<svg class="flag-svg" viewBox="0 0 30 20" width="24" height="16"><rect width="12" height="20" fill="#006600"/><rect x="12" width="18" height="20" fill="#ff0000"/><circle cx="12" cy="10" r="3.5" fill="#fedf00"/></svg>`,
+      "โครเอเชีย": `<svg class="flag-svg" viewBox="0 0 30 20" width="24" height="16"><rect width="30" height="6.6" fill="#ff0000"/><rect y="6.6" width="30" height="6.8" fill="#fff"/><rect y="13.4" width="30" height="6.6" fill="#171796"/><rect x="13" y="5" width="4" height="5" fill="#ff0000" style="opacity:0.8;"/></svg>`,
+      "เนเธอร์แลนด์": `<svg class="flag-svg" viewBox="0 0 30 20" width="24" height="16"><rect width="30" height="6.6" fill="#ae1c28"/><rect y="6.6" width="30" height="6.8" fill="#fff"/><rect y="13.4" width="30" height="6.6" fill="#21468b"/></svg>`
+    };
+
+    function getCountryFlagSVG(countryName) {
+      if (!countryName) return `<span style="font-size:1.1rem;">🏳️</span>`;
+      const cleanName = countryName.replace(/[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF]/g, "").trim();
+      return FLAG_SVGS[cleanName] || `<span style="font-size:1.1rem;">🏳️</span>`;
+    }
+
+    // --- State Storage Key Definitions ---
+    const STORAGE_USERS = 'sian_ball_lok_users_v2';
+    const STORAGE_MATCHES = 'sian_ball_lok_matches_v2';
+    const STORAGE_PREDS = 'sian_ball_lok_predictions_v2';
+    const STORAGE_ACTIVE_ID = 'sian_ball_lok_selected_user_id_v2';
+
+    // --- In-Memory State Initializers ---
+    let users = JSON.parse(localStorage.getItem(STORAGE_USERS)) || [
+      { id: 1, name: "คนรักบอล", colorHex: "#FFC107", championGuess: "อาร์เจนตินา", pin: "", isGoogleUser: false, googleEmail: null },
+      { id: 2, name: "สมชาย", colorHex: "#00E676", championGuess: "ฝรั่งเศส", pin: "1234", isGoogleUser: false, googleEmail: null }
+    ];
+
+    let matches = JSON.parse(localStorage.getItem(STORAGE_MATCHES)) || INITIAL_MATCHES_SEED();
+
+    let predictions = JSON.parse(localStorage.getItem(STORAGE_PREDS)) || [];
+    let tempSelections = {};
+
+    let selectedUserId = parseInt(localStorage.getItem(STORAGE_ACTIVE_ID)) || (users.length > 0 ? users[0].id : null);
+    
+    let activeTab = 0; // 0: Leaderboard, 1: Predictions, 2: Admin
+    let showOnlyPending = true; // Predictions tab filter
+
+    // Form inputs state
+    let selectedColorHex = COLOR_PRESETS[0];
+
+    // PIN modal auth state variables
+    let pinTargetUser = null;
+    let pinInputString = "";
+
+    // Timer state for kickoff updates and live simulations
+    let autoSimulateMatches = localStorage.getItem('autoSimulateMatches') !== 'false';
+
+    let currentTime = new Date();
+    setInterval(() => {
+      currentTime = new Date();
+      renderApp(); // refresh entire app state for real-time scores
+    }, 10000); // refresh every 10 seconds
+
+    // Initial seeding matches builder function (Aligned with actual 2026 World Cup dates & times in Thailand Time ICT)
+    function INITIAL_MATCHES_SEED() {
+      return [
+        { id: 1, teamA: "เม็กซิโก", teamAFlag: "🇲🇽", teamB: "ออสเตรเลีย", teamBFlag: "🇦🇺", stage: "รอบแบ่งกลุ่ม (กลุ่ม A)", actualResult: "PENDING", teamAScore: -1, teamBScore: -1, kickoffTime: "2026-06-12T02:00:00", locked: false },
+        { id: 2, teamA: "แคนาดา", teamAFlag: "🇨🇦", teamB: "ญี่ปุ่น", teamBFlag: "🇯🇵", stage: "รอบแบ่งกลุ่ม (กลุ่ม B)", actualResult: "PENDING", teamAScore: -1, teamBScore: -1, kickoffTime: "2026-06-13T02:00:00", locked: false },
+        { id: 3, teamA: "สหรัฐอเมริกา", teamAFlag: "🇺🇸", teamB: "โมร็อกโก", teamBFlag: "🇲🇦", stage: "รอบแบ่งกลุ่ม (กลุ่ม D)", actualResult: "PENDING", teamAScore: -1, teamBScore: -1, kickoffTime: "2026-06-13T08:00:00", locked: false },
+        { id: 4, teamA: "อาร์เจนตินา", teamAFlag: "🇦🇷", teamB: "ซาอุดีอาระเบีย", teamBFlag: "🇸🇦", stage: "รอบแบ่งกลุ่ม (กลุ่ม F)", actualResult: "PENDING", teamAScore: -1, teamBScore: -1, kickoffTime: "2026-06-14T05:00:00", locked: false },
+        { id: 5, teamA: "ฝรั่งเศส", teamAFlag: "🇫🇷", teamB: "ออสเตรีย", teamBFlag: "🇦🇹", stage: "รอบแบ่งกลุ่ม (กลุ่ม I)", actualResult: "PENDING", teamAScore: -1, teamBScore: -1, kickoffTime: "2026-06-15T02:00:00", locked: false },
+        { id: 6, teamA: "อังกฤษ", teamAFlag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", teamB: "เกาหลีใต้", teamBFlag: "🇰🇷", stage: "รอบแบ่งกลุ่ม (กลุ่ม C)", actualResult: "PENDING", teamAScore: -1, teamBScore: -1, kickoffTime: "2026-06-16T02:00:00", locked: false },
+        { id: 7, teamA: "บราซิล", teamAFlag: "🇧🇷", teamB: "เซอร์เบีย", teamBFlag: "🇷🇸", stage: "รอบแบ่งกลุ่ม (กลุ่ม G)", actualResult: "PENDING", teamAScore: -1, teamBScore: -1, kickoffTime: "2026-06-17T08:00:00", locked: false },
+        { id: 8, teamA: "สเปน", teamAFlag: "🇪🇸", teamB: "สวิตเซอร์แลนด์", teamBFlag: "🇨🇭", stage: "รอบแบ่งกลุ่ม (กลุ่ม K)", actualResult: "PENDING", teamAScore: -1, teamBScore: -1, kickoffTime: "2026-06-18T05:00:00", locked: false },
+        { id: 9, teamA: "แคนาดา", teamAFlag: "🇨🇦", teamB: "อาร์เจนตินา", teamBFlag: "🇦🇷", stage: "รอบ 32 ทีมสุดท้าย", actualResult: "PENDING", teamAScore: -1, teamBScore: -1, kickoffTime: "2026-06-30T02:00:00", locked: false },
+        { id: 10, teamA: "สหรัฐอเมริกา", teamAFlag: "🇺🇸", teamB: "ฝรั่งเศส", teamBFlag: "🇫🇷", stage: "รอบ 16 ทีมสุดท้าย", actualResult: "PENDING", teamAScore: -1, teamBScore: -1, kickoffTime: "2026-07-06T02:00:00", locked: false },
+        { id: 11, teamA: "บราซิล", teamAFlag: "🇧🇷", teamB: "เยอรมนี", teamBFlag: "🇩🇪", stage: "รอบรองชนะเลิศ", actualResult: "PENDING", teamAScore: -1, teamBScore: -1, kickoffTime: "2026-07-15T02:00:00", locked: false },
+        { id: 12, teamA: "อังกฤษ", teamAFlag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", teamB: "โปรตุเกส", teamBFlag: "🇵🇹", stage: "รอบรองชนะเลิศ", actualResult: "PENDING", teamAScore: -1, teamBScore: -1, kickoffTime: "2026-07-16T02:00:00", locked: false },
+        { id: 13, teamA: "อาร์เจนตินา", teamAFlag: "🇦🇷", teamB: "ฝรั่งเศส", teamBFlag: "🇫🇷", stage: "รอบชิงชนะเลิศ", actualResult: "PENDING", teamAScore: -1, teamBScore: -1, kickoffTime: "2026-07-20T02:00:00", locked: false }
+      ];
+    }
+
+    // Save States utility
+    function saveState() {
+      localStorage.setItem(STORAGE_USERS, JSON.stringify(users));
+      localStorage.setItem(STORAGE_MATCHES, JSON.stringify(matches));
+      localStorage.setItem(STORAGE_PREDS, JSON.stringify(predictions));
+      if (selectedUserId) {
+        localStorage.setItem(STORAGE_ACTIVE_ID, selectedUserId);
+      } else {
+        localStorage.removeItem(STORAGE_ACTIVE_ID);
+      }
+    }
+
+    function getSimulatedScore(matchId, elapsedMinutes) {
+      // Deterministic final score
+      const teamAFinal = (matchId * 3 + 1) % 4;
+      const teamBFinal = (matchId * 7 + 2) % 4;
+      
+      const teamAMinutes = [];
+      if (teamAFinal >= 1) teamAMinutes.push((matchId * 11) % 40);
+      if (teamAFinal >= 2) teamAMinutes.push(45 + (matchId * 17) % 40);
+      if (teamAFinal >= 3) teamAMinutes.push(75 + (matchId * 23) % 15);
+      
+      const teamBMinutes = [];
+      if (teamBFinal >= 1) teamBMinutes.push((matchId * 13) % 45);
+      if (teamBFinal >= 2) teamBMinutes.push(45 + (matchId * 19) % 45);
+      if (teamBFinal >= 3) teamBMinutes.push(75 + (matchId * 29) % 15);
+      
+      let goalsA = 0;
+      let goalsB = 0;
+      if (elapsedMinutes >= 0) {
+        teamAMinutes.forEach(m => { if (m <= elapsedMinutes) goalsA++; });
+        teamBMinutes.forEach(m => { if (m <= elapsedMinutes) goalsB++; });
+      }
+      return [Math.min(goalsA, teamAFinal), Math.min(goalsB, teamBFinal)];
+    }
+
+    function autoUpdateLiveMatches() {
+      if (!autoSimulateMatches) return;
+      
+      const refTime = new Date();
+      let stateChanged = false;
+      
+      matches = matches.map(match => {
+        const kickoffTime = new Date(match.kickoffTime);
+        const elapsedMinutes = (refTime - kickoffTime) / 60000;
+        
+        if (elapsedMinutes >= 0) {
+          if (elapsedMinutes >= 120) {
+            // Finished match
+            if (match.actualResult === "PENDING" || match.actualResult === null || match.status !== "finished") {
+              const [goalsA, goalsB] = getSimulatedScore(match.id, 120);
+              let res = "DRAW";
+              if (goalsA > goalsB) res = "A_WIN";
+              else if (goalsA < goalsB) res = "B_WIN";
+              
+              stateChanged = true;
+              return { ...match, teamAScore: goalsA, teamBScore: goalsB, actualResult: res, status: "finished", locked: true };
+            }
+          } else {
+            // Live match
+            const [goalsA, goalsB] = getSimulatedScore(match.id, elapsedMinutes);
+            let res = "DRAW";
+            if (goalsA > goalsB) res = "A_WIN";
+            else if (goalsA < goalsB) res = "B_WIN";
+            
+            if (match.teamAScore !== goalsA || match.teamBScore !== goalsB || match.actualResult !== res || match.status !== "live") {
+              stateChanged = true;
+              return { ...match, teamAScore: goalsA, teamBScore: goalsB, actualResult: res, status: "live", locked: true };
+            }
+          }
+        } else {
+          // Future match
+          if (match.actualResult !== "PENDING" || match.status !== "pending") {
+            stateChanged = true;
+            return { ...match, teamAScore: -1, teamBScore: -1, actualResult: "PENDING", status: "pending", locked: false };
+          }
+        }
+        return match;
+      });
+      
+      if (stateChanged) {
+        saveState();
+      }
+    }
+
+    // --- Business Logic Points calculation ---
+    function getActualChampion() {
+      const finalMatch = matches.find(m => m.id === 13);
+      if (finalMatch && finalMatch.actualResult !== "PENDING") {
+        if (finalMatch.actualResult === "A_WIN") return finalMatch.teamA;
+        if (finalMatch.actualResult === "B_WIN") return finalMatch.teamB;
+        return "รอดวลจุดโทษ";
+      }
+      return "";
+    }
+
+    function calculateLeaderboard() {
+      const champion = getActualChampion();
+      return users.map(user => {
+        let pts = 0;
+        let correctWins = 0;
+        let correctDraws = 0;
+        let predictsCount = 0;
+
+        const userPreds = predictions.filter(p => p.userId === user.id);
+
+        userPreds.forEach(pred => {
+          if (pred.predictedResult !== "PENDING") {
+            predictsCount++;
+            const match = matches.find(m => m.id === pred.matchId);
+            if (match && match.actualResult !== "PENDING") {
+              if (match.actualResult === "A_WIN" && pred.predictedResult === "A_WIN") {
+                pts += 3;
+                correctWins++;
+              } else if (match.actualResult === "B_WIN" && pred.predictedResult === "B_WIN") {
+                pts += 3;
+                correctWins++;
+              } else if (match.actualResult === "DRAW" && pred.predictedResult === "DRAW") {
+                pts += 1;
+                correctDraws++;
+              }
+            }
+          }
+        });
+
+        // Bonus +5 points
+        const hasCorrectChamp = champion !== "" &&
+          user.championGuess !== "" &&
+          user.championGuess.trim() === champion.trim();
+
+        if (hasCorrectChamp) pts += 5;
+
+        return {
+          user,
+          points: pts,
+          correctWinnersCount: correctWins,
+          correctDrawsCount: correctDraws,
+          hasCorrectChampion: hasCorrectChamp,
+          totalPredictionsCount: predictsCount
+        };
+      }).sort((a, b) => b.points - a.points);
+    }
+
+    // --- Render Controllers ---
+    function renderApp() {
+      autoUpdateLiveMatches();
+      renderUserSelector();
+      renderActiveUserBanner();
+      
+      // Render active Tab
+      const container = document.getElementById('tab-content-container');
+      if (activeTab === 0) {
+        renderLeaderboardTab();
+      } else if (activeTab === 1) {
+        renderPredictionsTab();
+      } else if (activeTab === 2) {
+        renderAdminTab();
+      }
+    }
+
+    function renderUserSelector() {
+      const scrollContainer = document.getElementById('user-cards-scroll-container');
+      const lb = calculateLeaderboard();
+      
+      let html = `
+        <div class="user-card" onclick="toggleGoogleModal(true)" style="border-color: rgba(255,255,255,0.05)">
+          <div class="user-avatar" style="background: #ea4335">G</div>
+          <div class="user-card-name" style="color: var(--color-gold)">เชื่อมต่อ Google</div>
+          <div class="user-card-score" style="color: var(--color-text-gray)">เข้าใช้งานด่วน</div>
+        </div>
+      `;
+
+      users.forEach(u => {
+        const isActive = u.id === selectedUserId;
+        const scoreObj = lb.find(l => l.user.id === u.id);
+        const score = scoreObj ? scoreObj.points : 0;
+        const borderStyle = isActive ? `border-color: ${u.colorHex}; box-shadow: 0 0 15px ${u.colorHex}30; border-width: 2px;` : '';
+
+        html += `
+          <div class="user-card ${isActive ? 'active' : ''}" onclick="selectUser(${u.id})" style="${borderStyle}">
+            <div class="user-avatar" style="background: ${u.colorHex}">
+              ${u.name.charAt(0).toUpperCase()}
+            </div>
+            ${u.isGoogleUser ? '<span class="google-badge">G</span>' : ''}
+            <div class="user-card-name">${u.name}</div>
+            <div class="user-card-score">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline; vertical-align:middle; margin-right:2px;"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.45 1-1 1H4v2h16v-2h-5c-.55 0-1-.45-1-1v-2.34"/><path d="M12 2a6 6 0 0 0-6 6v5a6 6 0 0 0 12 0V8a6 6 0 0 0-6-6z"/></svg>
+              ${score} คะแนน
+            </div>
+          </div>
+        `;
+      });
+
+      scrollContainer.innerHTML = html;
+    }
+
+    function renderActiveUserBanner() {
+      const banner = document.getElementById('active-user-display-bar');
+      const activeUser = users.find(u => u.id === selectedUserId);
+      
+      if (activeUser) {
+        banner.style.display = 'flex';
+        banner.style.justifyContent = 'space-between';
+        banner.style.alignItems = 'center';
+        banner.style.flexWrap = 'wrap';
+        banner.style.gap = '12px';
+        banner.style.background = 'rgba(30,41,59,0.3)';
+        banner.style.border = '1px solid var(--color-border)';
+        banner.style.borderRadius = 'var(--radius-md)';
+        banner.style.padding = '12px 20px';
+        banner.style.marginBottom = '24px';
+
+        banner.innerHTML = `
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="width: 12px; height: 12px; border-radius: 50%; background: ${activeUser.colorHex}; display: inline-block;"></span>
+            <span style="color: var(--color-text-gray); font-size: 0.9rem;">กำลังกรอกพยากรณ์สำหรับ: </span>
+            <strong style="font-size: 1rem; color: #fff;">${activeUser.name}</strong>
+            ${activeUser.isGoogleUser ? '<span style="background: #ea4335; color: #fff; font-size: 0.65rem; padding: 2px 6px; borderRadius: 10px; fontWeight: bold;">บัญชี Google</span>' : ''}
+          </div>
+          <button class="btn btn-outline" onclick="deleteUser(${activeUser.id})" style="padding: 6px 12px; border-radius: 8px; font-size: 0.8rem;">
+            ลบผู้เล่นนี้
+          </button>
+        `;
+      } else {
+        banner.style.display = 'none';
+      }
+    }
+
+    // --- TAB RENDERS ---
+    function renderLeaderboardTab() {
+      const container = document.getElementById('tab-content-container');
+      const lb = calculateLeaderboard();
+      const champion = getActualChampion();
+      
+      let tableRows = '';
+      if (lb.length === 0) {
+        tableRows = `
+          <tr>
+            <td colspan="5" style="text-align: center; padding: 40px; color: var(--color-text-gray);">
+              ยังไม่มีข้อมูลผู้เล่น กรุณากดปุ่ม "สร้างกลุ่มทาย" เพื่อเพิ่มผู้เล่น
+            </td>
+          </tr>
+        `;
+      } else {
+        lb.forEach((item, index) => {
+          const rank = index + 1;
+          const isFirst = index === 0;
+          const champText = item.user.championGuess ? `
+            <div class="champion-badge" style="display:flex; align-items:center; gap:4px; margin-top:4px;">
+              🏆 ทายแชมป์: ${getCountryFlagSVG(item.user.championGuess)} ${item.user.championGuess}
+              ${item.hasCorrectChampion ? '<span class="correct-champion-text"> (+5 โบนัสแชมป์โลก!)</span>' : ''}
+            </div>
+          ` : '';
+
+          tableRows += `
+            <tr class="leaderboard-row">
+              <td class="rank-cell">
+                ${isFirst ? '<span style="font-size: 1.4rem;">👑</span>' : `<strong style="color: var(--color-text-gray)">#${rank}</strong>`}
+              </td>
+              <td>
+                <div class="player-info-cell">
+                  <span style="width: 24px; height: 24px; border-radius: 50%; background: ${item.user.colorHex}; display: inline-flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 0.75rem;">
+                    ${item.user.name.charAt(0).toUpperCase()}
+                  </span>
+                  <div>
+                    <strong style="font-size: 0.95rem;">${item.user.name}</strong>
+                    ${champText}
+                  </div>
+                </div>
+              </td>
+              <td style="text-align: center; font-weight: 500;">
+                🏆 ${item.correctWinnersCount} ครั้ง &nbsp;&nbsp; 🤝 ${item.correctDrawsCount} ครั้ง
+              </td>
+              <td style="text-align: center; color: var(--color-text-gray); font-size: 0.9rem;">
+                ${item.totalPredictionsCount} / ${matches.length} คู่
+              </td>
+              <td style="text-align: center;">
+                <span class="points-pill ${isFirst ? 'points-pill-gold' : ''}">${item.points}</span>
+              </td>
+            </tr>
+          `;
+        });
+      }
+
+      // Check for winner display banner
+      let championBannerHtml = '';
+      if (champion !== "") {
+        const topPlayers = lb.filter(l => l.points === lb[0].points).map(l => l.user.name).join(', ');
+        championBannerHtml = `
+          <div style="margin-top: 24px; background: rgba(16, 185, 129, 0.1); border: 2px solid var(--color-green); border-radius: var(--radius-lg); padding: 20px; text-align: center;">
+            <h3 style="color: var(--color-green); font-weight: 800; margin-bottom: 6px;">🎉 ขอแสดงความยินดีกับผู้ชนะถ้วยรางวัลเวิลด์คัพ! 🎉</h3>
+            <p style="font-size: 1.1rem; font-weight: bold; margin-bottom: 8px; display:flex; align-items:center; justify-content:center; gap:6px;">ทีมแชมป์โลกจริง: ${getCountryFlagSVG(champion)} ${champion}</p>
+            ${lb.length > 0 ? `<strong style="color: var(--color-gold); font-size: 1rem;">ผู้ที่ทำคะแนนสะสมสูงสุดคือ: ${topPlayers} (${lb[0].points} คะแนน)</strong>` : ''}
+          </div>
+        `;
+      }
+
+      container.innerHTML = `
+        <div class="grid-container">
+          <div class="panel-card">
+            <h2 class="panel-title">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2" style="display:inline; vertical-align:middle; margin-right:6px;"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.45 1-1 1H4v2h16v-2h-5c-.55 0-1-.45-1-1v-2.34"/><path d="M12 2a6 6 0 0 0-6 6v5a6 6 0 0 0 12 0V8a6 6 0 0 0-6-6z"/></svg>
+              ตารางเทียบคะแนนรวมกลุ่มเพื่อน
+            </h2>
+            <div style="overflow-x: auto;">
+              <table class="leaderboard-table">
+                <thead>
+                  <tr>
+                    <th class="rank-cell">อันดับ</th>
+                    <th>ผู้ทำนาย</th>
+                    <th style="text-align: center;">สถิติ (ชนะ / เสมอ)</th>
+                    <th style="text-align: center;">ส่งทายแล้ว</th>
+                    <th style="text-align: center;">คะแนนรวม</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${tableRows}
+                </tbody>
+              </table>
+            </div>
+            ${championBannerHtml}
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 24px;">
+            <div class="panel-card">
+              <h3 style="font-size: 1.05rem; color: #fff; margin-bottom: 10px; display: flex; align-items: center; gap: 6px;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                จำลองความสนุกฟุตบอลโลก
+              </h3>
+              <p style="color: var(--color-text-gray); font-size: 0.8rem; line-height: 1.5; margin-bottom: 16px;">
+                กดปุ่มจำลองผลแข่งจริงด้านล่าง เพื่อสุ่มสกอร์และผลการแข่งขันในสนามจริงทั้งหมดทันที ระบบจะตรวจสอบคำนวณและอัปเดตแจกจ่ายคะแนนให้ผู้ทำนายทุกคนอัตโนมัติ
+              </p>
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <button class="btn btn-primary" onclick="simulateTournament()" style="width: 100%;">สุ่มผลการแข่งจริงทั้งหมด</button>
+                <button class="btn btn-outline" onclick="resetAllMatchResults()" style="width: 100%;">รีเซ็ตผลจริงทั้งหมด</button>
+              </div>
+            </div>
+
+            <div class="alert-card alert-warning">
+              <h4 style="display: flex; align-items: center; gap: 6px; font-weight: bold; margin-bottom: 6px;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                ข้อแจ้งเตือนด้านกฎหมายการพนัน
+              </h4>
+              <p style="font-size: 0.76rem; line-height: 1.4;">
+                • ร่วมสนุกอย่างสร้างสรรค์: แอปพลิเคชันนี้เพื่อความสนุกและการพยากรณ์ผลฟรีในกลุ่มเพื่อนฝูงเท่านั้น ห้ามชวนแทงบอลเด็ดขาด!<br/>
+                • พ.ร.บ. การพนัน พ.ศ. 2478: การเล่นพนันทายผลบอลเป็นสิ่งที่ผิดกฎหมายอย่างชัดเจนในประเทศไทย มีโทษจำคุกและปรับอย่างรุนแรง<br/>
+                • ดูแลมิตรภาพด้วยความสนุก ห้ามวางเงินจริง เดิมพันนอกสนาม หรือใช้ในเชิงพาณิชย์ทุกกรณี!
+              </p>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderPredictionsTab() {
+      const container = document.getElementById('tab-content-container');
+      const activeUser = users.find(u => u.id === selectedUserId);
+      
+      if (!activeUser) {
+        container.innerHTML = `
+          <div class="panel-card" style="text-align: center; padding: 40px; color: var(--color-text-gray);">
+            กรุณาเลือกหรือสร้างโปรไฟล์ผู้เล่นด้านบน เพื่อกรอกพยากรณ์ผลการแข่งขัน
+          </div>
+        `;
+        return;
+      }
+
+      // 1. Select Champion Section
+      let championOptions = '';
+      const hasChampionGuess = activeUser.championGuess && activeUser.championGuess !== "";
+      CHAMPIONS_POOL.forEach(team => {
+        const isSelected = activeUser.championGuess === team.name;
+        const disabledStyle = (hasChampionGuess && !isSelected) ? 'opacity: 0.4; cursor: not-allowed;' : '';
+        const clickAction = hasChampionGuess ? '' : `onclick="confirmAndSetChampion('${team.name}')"`;
+        championOptions += `
+          <div class="champion-option-pill ${isSelected ? 'selected' : ''}" ${clickAction} style="display:inline-flex; align-items:center; gap:4px; ${disabledStyle}">
+            ${getCountryFlagSVG(team.name)} ${team.name}
+          </div>
+        `;
+      });
+
+      // 2. Matches list
+      let matchesHtml = '';
+      const filteredMatches = matches.filter(m => !showOnlyPending || m.actualResult === "PENDING");
+      
+      if (filteredMatches.length === 0) {
+        matchesHtml = `
+          <div style="text-align: center; padding: 30px; color: var(--color-text-gray); font-size: 0.9rem;">
+            ไม่มีคู่การแข่งขันที่ตรงกับเงื่อนไขการค้นหา
+          </div>
+        `;
+      } else {
+        filteredMatches.forEach(match => {
+          const pred = predictions.find(p => p.userId === activeUser.id && p.matchId === match.id);
+          const predVal = pred ? pred.predictedResult : "PENDING";
+          const isSubmitted = predVal !== "PENDING";
+          
+          const isPastKickoff = new Date(currentTime) > new Date(match.kickoffTime);
+          const isLocked = isPastKickoff || match.locked || match.actualResult !== "PENDING";
+
+          let statusTag = '';
+          if (match.status === 'live') {
+            const refTime = new Date();
+            const kickoffTime = new Date(match.kickoffTime);
+            const elapsedMinutes = Math.floor((refTime - kickoffTime) / 60000);
+            let minuteLabel = "";
+            if (elapsedMinutes < 45) minuteLabel = elapsedMinutes + "'";
+            else if (elapsedMinutes < 50) minuteLabel = "HT";
+            else if (elapsedMinutes < 95) minuteLabel = (elapsedMinutes - 5) + "'";
+            else minuteLabel = "FT";
+            statusTag = `
+              <span class="match-status-badge status-finished" style="background: rgba(16, 185, 129, 0.15); color: var(--color-green); font-weight:900; box-shadow: 0 0 8px rgba(16,185,129,0.3)">
+                🟢 LIVE ${minuteLabel}
+              </span>`;
+          } else if (isLocked) {
+            statusTag = `
+              <span class="match-status-badge status-locked">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline; vertical-align:middle; margin-right:2px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> ล็อกแล้ว
+              </span>`;
+          } else if (isSubmitted) {
+            statusTag = `
+              <span class="match-status-badge status-locked" style="background: rgba(16, 185, 129, 0.15); color: var(--color-green);">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline; vertical-align:middle; margin-right:2px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> ส่งทายแล้ว
+              </span>`;
+          } else {
+            statusTag = `
+              <span class="match-status-badge status-pending">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline; vertical-align:middle; margin-right:2px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg> เปิดรับทาย
+              </span>`;
+          }
+
+          // Points Grading feedback label
+          let gradeLabel = '';
+          if (match.actualResult !== "PENDING") {
+            const isCorrect = (match.actualResult === "A_WIN" && predVal === "A_WIN") ||
+              (match.actualResult === "B_WIN" && predVal === "B_WIN") ||
+              (match.actualResult === "DRAW" && predVal === "DRAW");
+
+            const ptsReward = isCorrect ? (match.actualResult === "DRAW" ? 1 : 3) : 0;
+            gradeLabel = isCorrect ? `
+              <span style="background: rgba(16, 185, 129, 0.15); color: var(--color-green); font-size: 0.72rem; padding: 2px 8px; border-radius: 10px; font-weight: bold; margin-right: 8px;">
+                ทายถูก (+${ptsReward} คะแนน)
+              </span>` : `
+              <span style="background: rgba(239, 68, 68, 0.15); color: var(--color-red); font-size: 0.72rem; padding: 2px 8px; border-radius: 10px; font-weight: bold; margin-right: 8px;">
+                ทายผิด (+0 คะแนน)
+              </span>`;
+          }
+
+          const disableAttr = (isLocked || isSubmitted) ? 'disabled' : '';
+          const tempChoice = tempSelections[match.id] || null;
+          
+          const isSelectedA = (isSubmitted && predVal === 'A_WIN') || (!isSubmitted && tempChoice === 'A_WIN');
+          const isSelectedDraw = (isSubmitted && predVal === 'DRAW') || (!isSubmitted && tempChoice === 'DRAW');
+          const isSelectedB = (isSubmitted && predVal === 'B_WIN') || (!isSubmitted && tempChoice === 'B_WIN');
+
+          let confirmSectionHtml = '';
+          if (isSubmitted) {
+            confirmSectionHtml = `
+              <div style="margin-top: 10px; text-align: center; font-size: 0.8rem; font-weight: bold; color: var(--color-green); display: flex; align-items: center; justify-content: center; gap: 4px;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="display:inline; vertical-align:middle;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                ยืนยันผลทายเรียบร้อยแล้ว (แก้ไขไม่ได้)
+              </div>
+            `;
+          } else if (tempChoice) {
+            confirmSectionHtml = `
+              <button class="btn btn-primary" onclick="confirmAndSubmitPrediction(${match.id})" style="width: 100%; margin-top: 12px; border-radius: 8px; font-size: 0.8rem; padding: 6px 12px; display: inline-flex; align-items: center; justify-content: center; gap: 4px; box-shadow: 0 0 10px rgba(251, 191, 36, 0.3);">
+                💾 กดยืนยันคำทำนายนี้ (ยืนยันแล้วจะแก้ไขไม่ได้อีก)
+              </button>
+            `;
+          }
+
+          matchesHtml += `
+            <div class="match-card">
+              <div class="match-header">
+                <span class="match-stage-tag">${match.stage}</span>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  ${gradeLabel}
+                  ${statusTag}
+                </div>
+              </div>
+
+              <p style="color: var(--color-text-gray); font-size: 0.72rem; margin-bottom: 8px; display: flex; align-items: center; gap: 4px;">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                คิกออฟ: ${formatKickoffDate(match.kickoffTime)}
+              </p>
+
+              <div class="match-vs-row">
+                <div class="team-container team-left">
+                  <span class="team-name">${match.teamA}</span>
+                  <span class="team-flag" style="display:inline-flex; align-items:center;">${getCountryFlagSVG(match.teamA)}</span>
+                </div>
+                <div class="score-pill">
+                  ${match.actualResult !== "PENDING" ? `${match.teamAScore} - ${match.teamBScore}` : '<span class="vs-text">VS</span>'}
+                </div>
+                <div class="team-container team-right">
+                  <span class="team-flag" style="display:inline-flex; align-items:center;">${getCountryFlagSVG(match.teamB)}</span>
+                  <span class="team-name">${match.teamB}</span>
+                </div>
+              </div>
+
+              <div style="margin-top: 14px;">
+                <span style="font-size: 0.75rem; color: var(--color-text-gray); display: block; margin-bottom: 6px;">เลือกผลทำนายของคุณ:</span>
+                <div class="choices-row">
+                  <button class="choice-btn ${isSelectedA ? 'selected' : ''}" onclick="selectTempPrediction(${match.id}, 'A_WIN')" ${disableAttr} style="display:inline-flex; align-items:center; justify-content:center; gap:4px;">
+                    ${getCountryFlagSVG(match.teamA)} ${match.teamA} ชนะ
+                  </button>
+                  <button class="choice-btn ${isSelectedDraw ? 'selected' : ''}" onclick="selectTempPrediction(${match.id}, 'DRAW')" ${disableAttr}>
+                    🤝 เสมอ
+                  </button>
+                  <button class="choice-btn ${isSelectedB ? 'selected' : ''}" onclick="selectTempPrediction(${match.id}, 'B_WIN')" ${disableAttr} style="display:inline-flex; align-items:center; justify-content:center; gap:4px;">
+                    ${getCountryFlagSVG(match.teamB)} ${match.teamB} ชนะ
+                  </button>
+                </div>
+                ${confirmSectionHtml}
+              </div>
+            </div>
+          `;
+        });
+      }
+
+      container.innerHTML = `
+        <div class="panel-card">
+          <!-- Selection Champion guessing -->
+          <div style="background: rgba(15,23,42,0.6); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 16px; margin-bottom: 24px;">
+            <h3 style="color: var(--color-gold); font-size: 0.95rem; font-weight: bold; display: flex; align-items: center; gap: 6px;">
+              🏆 ทายทีมที่จะชนะเลิศแชมป์บอลโลก 2026
+            </h3>
+            <p style="color: var(--color-text-gray); font-size: 0.78rem; margin-bottom: 12px;">
+              หากทีมนี้ได้รับถ้วยทองแชมป์โลกจริงตามผลตัดสินสุดท้าย คุณจะได้รับโบนัสพิเศษเพิ่ม +5 คะแนน
+            </p>
+            <div class="champion-options-row">
+              ${championOptions}
+            </div>
+          </div>
+
+          <!-- Predictions Table List Header -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
+            <h3 style="font-size: 1.1rem; color: #fff; display: flex; align-items: center; gap: 6px;">
+              ⚽ รายชื่อคู่การแข่งขันร่วมส่งทายผล
+            </h3>
+            <label style="display: inline-flex; align-items: center; gap: 8px; cursor: pointer; fontSize: 0.85rem; color: var(--color-text-gray);">
+              <input type="checkbox" id="show-only-pending-checkbox" ${showOnlyPending ? 'checked' : ''} onchange="togglePendingFilter(this.checked)" style="accent-color: var(--color-gold);">
+              แสดงเฉพาะแมตช์ที่ยังไม่เริ่มแข่ง (Pending)
+            </label>
+          </div>
+
+          <!-- Matches cards rendered list -->
+          <div>
+            ${matchesHtml}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderAdminTab() {
+      const container = document.getElementById('tab-content-container');
+      
+      let matchesEditHtml = '';
+      matches.forEach(match => {
+        const scoreA = match.teamAScore >= 0 ? match.teamAScore : 0;
+        const scoreB = match.teamBScore >= 0 ? match.teamBScore : 0;
+
+        const isFinished = match.actualResult !== "PENDING";
+        
+        matchesEditHtml += `
+          <div class="match-card" style="background: rgba(15, 23, 42, 0.6); border: 1px solid var(--color-border);">
+            <div class="match-header" style="margin-bottom: 8px;">
+              <span class="match-stage-tag">${match.stage}</span>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                ${isFinished ? '<span class="match-status-badge status-finished">บันทึกผลแล้ว</span>' : ''}
+                <button class="btn btn-outline" onclick="toggleMatchLockState(${match.id})" style="padding: 4px 10px; font-size: 0.7rem; border-radius: 12px;">
+                  ${match.locked ? `
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline; vertical-align:middle; margin-right:2px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> ปลดล็อก
+                  ` : `
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline; vertical-align:middle; margin-right:2px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg> ล็อกทายผล
+                  `}
+                </button>
+              </div>
+            </div>
+
+            <!-- Score controllers row -->
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding: 10px 0;">
+              <div style="display: flex; align-items: center; gap: 8px; min-width: 160px;">
+                <span style="display:inline-flex; align-items:center; height:100%;">${getCountryFlagSVG(match.teamA)}</span>
+                <strong style="font-size: 0.9rem;">${match.teamA}</strong>
+              </div>
+
+              <div class="admin-match-score-adjuster">
+                <button class="score-control-btn" onclick="adjustMatchScore(${match.id}, ${scoreA - 1}, ${scoreB})">-</button>
+                <div style="background: #090e18; border: 1px solid var(--color-border); width: 38px; height: 32px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--color-gold); border-radius: 4px;">
+                  ${match.teamAScore >= 0 ? match.teamAScore : "-"}
+                </div>
+                <button class="score-control-btn" onclick="adjustMatchScore(${match.id}, ${scoreA + 1}, ${scoreB})">+</button>
+
+                <span style="font-weight: bold; color: var(--color-text-gray);">:</span>
+
+                <button class="score-control-btn" onclick="adjustMatchScore(${match.id}, ${scoreA}, ${scoreB - 1})">-</button>
+                <div style="background: #090e18; border: 1px solid var(--color-border); width: 38px; height: 32px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--color-gold); border-radius: 4px;">
+                  ${match.teamBScore >= 0 ? match.teamBScore : "-"}
+                </div>
+                <button class="score-control-btn" onclick="adjustMatchScore(${match.id}, ${scoreA}, ${scoreB + 1})">+</button>
+              </div>
+
+              <div style="display: flex; align-items: center; gap: 8px; min-width: 160px; justify-content: flex-end;">
+                <strong style="font-size: 0.9rem;">${match.teamB}</strong>
+                <span style="display:inline-flex; align-items:center; height:100%;">${getCountryFlagSVG(match.teamB)}</span>
+              </div>
+            </div>
+
+            <!-- Inline settings controls -->
+            <div class="admin-match-controls">
+              <div style="display: flex; align-items: center; gap: 6px; margin-right: auto;">
+                <span style="font-size: 0.72rem; color: var(--color-text-gray);">ตั้งเวลาคิกออฟ:</span>
+                <input type="datetime-local" class="time-input" value="${match.kickoffTime.slice(0, 16)}" onchange="updateMatchKickoff(${match.id}, this.value)">
+              </div>
+              
+              ${isFinished ? `
+                <button class="btn btn-outline" onclick="clearMatchResult(${match.id})" style="padding: 4px 8px; font-size: 0.72rem; border-radius: 6px;">
+                  ล้างผลบอล
+                </button>
+              ` : ''}
+              
+              <button class="btn btn-outline" onclick="setMatchResultDirectly(${match.id}, 2, 0, 'A_WIN')" style="${match.actualResult === 'A_WIN' ? 'border-color:var(--color-green); background:rgba(16,185,129,0.1); color:var(--color-green);' : ''}">
+                ${match.teamA} (2-0)
+              </button>
+              <button class="btn btn-outline" onclick="setMatchResultDirectly(${match.id}, 1, 1, 'DRAW')" style="${match.actualResult === 'DRAW' ? 'border-color:var(--color-green); background:rgba(16,185,129,0.1); color:var(--color-green);' : ''}">
+                เสมอ (1-1)
+              </button>
+              <button class="btn btn-outline" onclick="setMatchResultDirectly(${match.id}, 0, 2, 'B_WIN')" style="${match.actualResult === 'B_WIN' ? 'border-color:var(--color-green); background:rgba(16,185,129,0.1); color:var(--color-green);' : ''}">
+                ${match.teamB} (0-2)
+              </button>
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = `
+        <div class="panel-card">
+          <h2 class="panel-title" style="color: var(--color-gold);">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline; vertical-align:middle; margin-right:6px;"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            แผงควบคุมผู้ตัดสิน (Admin Panel)
+          </h2>
+          <div class="alert-card alert-info" style="margin-bottom: 24px;">
+            <h4 style="font-weight: bold; margin-bottom: 4px; display:flex; align-items:center; gap:6px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> คู่มือบริหารจัดการสกอร์</h4>
+            <p style="font-size: 0.8rem; line-height: 1.4;">
+              แอดมินหรือคณะกรรมการสามารถบันทึกสกอร์จริงที่เกิดขึ้นเพื่อส่งผลคะแนนคิดประเมินให้เพื่อนในกลุ่ม หรือตั้งเวลาเตะ คิกออฟ และตั้งปิดรับทายผลแมตช์ที่ต้องการได้ทันที
+            </p>
+          </div>
+
+          <!-- Simulation & Internet Sync settings widget -->
+          <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 16px; margin-bottom: 24px; display: grid; grid-template-columns: 1fr; gap: 16px;">
+            <div style="display: grid; grid-template-columns: 1fr; gap: 10px;">
+              <h3 style="font-size: 0.95rem; color: var(--color-gold); display: flex; align-items: center; gap: 6px; margin-bottom: 4px; font-weight: bold;">
+                ⚙️ ระบบจำลองคะแนนบอลสดตามเวลาจริง
+              </h3>
+              <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                <label style="display: inline-flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.85rem; color: #fff;">
+                  <input type="checkbox" id="auto-simulate-checkbox" ${autoSimulateMatches ? 'checked' : ''} onchange="toggleAutoSimulate(this.checked)" style="accent-color: var(--color-gold);">
+                  เปิดใช้การจำลองผลการแข่งสดตามเวลาจริง
+                </label>
+              </div>
+            </div>
+            
+            <div style="border-top: 1px solid var(--color-border); padding-top: 12px; display: grid; grid-template-columns: 1fr; gap: 10px;">
+              <h3 style="font-size: 0.95rem; color: var(--color-gold); display: flex; align-items: center; gap: 6px; font-weight: bold;">
+                🌐 ซิงค์ผลบอลจริงจากตัวกลางหลังบ้าน (Database Sync)
+              </h3>
+              <p style="font-size: 0.75rem; color: var(--color-text-gray); margin-bottom: 2px;">
+                ดึงข้อมูลที่ซิงค์จาก Football-Data API (ผ่าน GitHub Actions/สคริปต์หลังบ้าน) โดยระบุชื่อไฟล์ <code>live_scores.json</code> หรือไฟล์จำลอง <code>mock_live_scores.json</code>
+              </p>
+              <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+                <input type="text" class="form-input" id="sync-url-input" value="live_scores.json" style="flex: 2; min-width: 150px; padding: 6px 12px; font-size: 0.85rem; background: rgba(15,23,42,0.6); border: 1px solid var(--color-border); color: #fff; border-radius: var(--radius-sm);">
+                <button class="btn btn-primary" onclick="syncScoresFromInternet()" style="padding: 6px 16px; font-size: 0.85rem; border-radius: 8px;">
+                  📥 ดึงจาก URL (Sync Now)
+                </button>
+              </div>
+              <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 4px;">
+                <span style="font-size: 0.8rem; color: var(--color-text-gray);">หรืออัปโหลดไฟล์ JSON ด้วยตัวเอง:</span>
+                <input type="file" id="json-file-picker" accept=".json" onchange="syncScoresFromFile(this)" style="font-size: 0.8rem; color: var(--color-text-gray);">
+              </div>
+            </div>
+          </div>
+
+          <div>
+            ${matchesEditHtml}
+          </div>
+        </div>
+      `;
+    }
+
+    // --- Actions Handlers ---
+    function selectUser(userId) {
+      const targetUser = users.find(u => u.id === userId);
+      if (!targetUser) return;
+
+      if (targetUser.pin && targetUser.pin !== "") {
+        // Authenticate with PIN
+        pinTargetUser = targetUser;
+        pinInputString = "";
+        document.getElementById('pin-auth-target-name').innerText = targetUser.name;
+        document.getElementById('pin-auth-error').style.display = 'none';
+        updatePinDots();
+        togglePinAuthModal(true);
+      } else {
+        selectedUserId = userId;
+        tempSelections = {}; // Clear temp selections on switch
+        saveState();
+        renderApp();
+      }
+    }
+
+    function pressPinKey(num) {
+      if (pinInputString.length < 4) {
+        pinInputString += num;
+        updatePinDots();
+        document.getElementById('pin-auth-error').style.display = 'none';
+
+        if (pinInputString.length === 4) {
+          // Verify PIN
+          if (pinTargetUser && pinTargetUser.pin === pinInputString) {
+            selectedUserId = pinTargetUser.id;
+            tempSelections = {}; // Clear temp selections on switch
+            saveState();
+            togglePinAuthModal(false);
+            pinTargetUser = null;
+            pinInputString = "";
+            renderApp();
+          } else {
+            document.getElementById('pin-auth-error').style.display = 'block';
+            pinInputString = "";
+            updatePinDots();
+          }
+        }
+      }
+    }
+
+    function pressPinBackspace() {
+      if (pinInputString.length > 0) {
+        pinInputString = pinInputString.slice(0, -1);
+        updatePinDots();
+      }
+    }
+
+    function updatePinDots() {
+      for (let i = 0; i < 4; i++) {
+        const dot = document.getElementById(`pin-dot-${i}`);
+        if (pinInputString.length > i) {
+          dot.classList.add('filled');
+        } else {
+          dot.classList.remove('filled');
+        }
+      }
+    }
+
+    function cancelPinAuth() {
+      togglePinAuthModal(false);
+      pinTargetUser = null;
+      pinInputString = "";
+    }
+
+    function selectTempPrediction(matchId, result) {
+      if (!selectedUserId) {
+        alert("กรุณาเลือกผู้ใช้งานก่อนทายผล");
+        return;
+      }
+      
+      const match = matches.find(m => m.id === matchId);
+      if (!match) return;
+
+      const isPastKickoff = new Date(currentTime) > new Date(match.kickoffTime);
+      if (isPastKickoff || match.locked || match.actualResult !== 'PENDING') {
+        alert("ไม่สามารถเลือกผลทายได้ เนื่องจากคู่การแข่งขันคิกออฟไปแล้ว หรือผลจริงออกแล้ว");
+        return;
+      }
+
+      const isSubmitted = predictions.some(p => p.userId === selectedUserId && p.matchId === matchId);
+      if (isSubmitted) {
+        alert("คุณยืนยันคำทำนายคู่นี้ไปแล้ว ไม่สามารถแก้ไขได้");
+        return;
+      }
+
+      tempSelections[matchId] = result;
+      renderApp();
+    }
+
+    function confirmAndSubmitPrediction(matchId) {
+      const choice = tempSelections[matchId];
+      if (!choice) return;
+
+      const match = matches.find(m => m.id === matchId);
+      if (!match) return;
+
+      const isPastKickoff = new Date(currentTime) > new Date(match.kickoffTime);
+      if (isPastKickoff || match.locked || match.actualResult !== 'PENDING') {
+        alert("ไม่สามารถยืนยันคำทำนายได้ เนื่องจากคู่การแข่งขันคิกออฟไปแล้ว หรือผลจริงออกแล้ว");
+        return;
+      }
+
+      if (confirm(`คุณต้องการยืนยันคำทำนายคู่นี้ใช่หรือไม่? เมื่อกดยืนยันแล้วจะไม่สามารถกลับมาแก้ไขผลทายได้อีก`)) {
+        const existingIndex = predictions.findIndex(p => p.userId === selectedUserId && p.matchId === matchId);
+        if (existingIndex > -1) {
+          if (predictions[existingIndex].predictedResult !== "PENDING") {
+            alert("คุณยืนยันคำทำนายคู่นี้ไปแล้ว ไม่สามารถแก้ไขได้");
+            return;
+          }
+          predictions[existingIndex].predictedResult = choice;
+        } else {
+          predictions.push({ userId: selectedUserId, matchId, predictedResult: choice });
+        }
+        delete tempSelections[matchId];
+        saveState();
+        renderApp();
+      }
+    }
+
+    function confirmAndSetChampion(championName) {
+      const activeUser = users.find(u => u.id === selectedUserId);
+      if (!activeUser) return;
+      if (activeUser.championGuess && activeUser.championGuess !== "") {
+        alert("คุณยืนยันผลทายทีมแชมป์โลกไปแล้ว ไม่สามารถแก้ไขได้");
+        return;
+      }
+      if (confirm(`คุณต้องการยืนยันการเลือก "${championName}" เป็นทีมแชมป์โลกใช่หรือไม่? เมื่อกดยืนยันแล้วจะไม่สามารถแก้ไขได้อีก`)) {
+        updateUserChampion(championName);
+      }
+    }
+
+    function updateUserChampion(championName) {
+      if (!selectedUserId) return;
+      const targetUser = users.find(u => u.id === selectedUserId);
+      if (targetUser && targetUser.championGuess && targetUser.championGuess !== "") {
+        return; // Locked!
+      }
+      users = users.map(u => u.id === selectedUserId ? { ...u, championGuess: championName } : u);
+      saveState();
+      renderApp();
+    }
+
+    // --- Admin Action Handlers ---
+    function adjustMatchScore(matchId, scoreA, scoreB) {
+      matches = matches.map(match => {
+        if (match.id === matchId) {
+          let result = "PENDING";
+          if (scoreA > scoreB) result = "A_WIN";
+          else if (scoreA < scoreB) result = "B_WIN";
+          else {
+            if (match.stage !== "รอบแบ่งกลุ่ม" && !match.stage.startsWith("รอบแบ่งกลุ่ม")) {
+              result = "A_WIN"; // Default knockout winner
+            } else {
+              result = "DRAW";
+            }
+          }
+          return { ...match, teamAScore: scoreA, teamBScore: scoreB, actualResult: result };
+        }
+        return match;
+      });
+      saveState();
+      renderApp();
+    }
+
+    function setMatchResultDirectly(matchId, scoreA, scoreB, result) {
+      matches = matches.map(m => 
+        m.id === matchId ? { ...m, teamAScore: scoreA, teamBScore: scoreB, actualResult: result } : m
+      );
+      saveState();
+      renderApp();
+    }
+
+    function clearMatchResult(matchId) {
+      matches = matches.map(m => 
+        m.id === matchId ? { ...m, teamAScore: -1, teamBScore: -1, actualResult: "PENDING" } : m
+      );
+      saveState();
+      renderApp();
+    }
+
+    function toggleMatchLockState(matchId) {
+      matches = matches.map(m => 
+        m.id === matchId ? { ...m, locked: !m.locked } : m
+      );
+      saveState();
+      renderApp();
+    }
+
+    function toggleAutoSimulate(checked) {
+      autoSimulateMatches = checked;
+      localStorage.setItem('autoSimulateMatches', checked);
+      renderApp();
+    }
+
+
+
+    async function syncScoresFromInternet() {
+      const urlField = document.getElementById('sync-url-input');
+      const url = urlField ? urlField.value.trim() : 'live_scores.json';
+      
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error("ดาวน์โหลดไฟล์ไม่สำเร็จ: " + response.statusText);
+        }
+        const data = await response.json();
+        if (data && data.matches) {
+          applySyncMatchesData(data.matches);
+        } else {
+          alert("รูปแบบ JSON ไม่ถูกต้อง (ไม่พบคีย์ 'matches')");
+        }
+      } catch (err) {
+        alert("เกิดข้อผิดพลาด: " + err.message + "\n\n(คำแนะนำ: หากเปิดใช้แบบไฟล์เครื่องปกติผ่าน file:// เว็บบราวเซอร์จะบล็อก CORS ให้เลือกซิงค์โดยการอัปโหลดไฟล์ JSON ทางเลือกด้านล่างแทน)");
+      }
+    }
+
+    function syncScoresFromFile(input) {
+      const file = input.files[0];
+      if (!file) return;
+      
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const data = JSON.parse(e.target.result);
+          if (data && data.matches) {
+            applySyncMatchesData(data.matches);
+          } else {
+            alert("รูปแบบ JSON ไม่ถูกต้อง");
+          }
+        } catch (err) {
+          alert("ไม่สามารถอ่านไฟล์ JSON ได้: " + err.message);
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function applySyncMatchesData(syncMatches) {
+      let updatedCount = 0;
+      syncMatches.forEach(m => {
+        const matchId = m.match_id || m.id;
+        if (matchId === undefined) return;
+        
+        const teamA = m.team_a || m.teamA;
+        const teamB = m.team_b || m.teamB;
+        const teamAFlag = m.team_a_flag || m.teamAFlag;
+        const teamBFlag = m.team_b_flag || m.teamBFlag;
+        const stage = m.stage;
+        const kickoffTime = m.kickoff_time || m.kickoffTime;
+        
+        const scoreA = m.team_a_score !== undefined ? m.team_a_score : m.score_a;
+        const scoreB = m.team_b_score !== undefined ? m.team_b_score : m.score_b;
+        const status = m.status || "finished";
+        const result = m.actual_result || m.result;
+        
+        const matchIdx = matches.findIndex(match => match.id === matchId);
+        
+        if (matchIdx > -1) {
+          // Update existing match details
+          const matchObj = matches[matchIdx];
+          matches[matchIdx].teamA = teamA !== undefined ? teamA : matchObj.teamA;
+          matches[matchIdx].teamB = teamB !== undefined ? teamB : matchObj.teamB;
+          matches[matchIdx].teamAFlag = teamAFlag !== undefined ? teamAFlag : matchObj.teamAFlag;
+          matches[matchIdx].teamBFlag = teamBFlag !== undefined ? teamBFlag : matchObj.teamBFlag;
+          matches[matchIdx].stage = stage !== undefined ? stage : matchObj.stage;
+          matches[matchIdx].kickoffTime = kickoffTime !== undefined ? kickoffTime : matchObj.kickoffTime;
+          
+          if (scoreA !== undefined && scoreB !== undefined) {
+            matches[matchIdx].teamAScore = scoreA;
+            matches[matchIdx].teamBScore = scoreB;
+            matches[matchIdx].status = status;
+            
+            let res = result;
+            if (!res) {
+              if (scoreA > scoreB) res = "A_WIN";
+              else if (scoreA < scoreB) res = "B_WIN";
+              else res = "DRAW";
+            }
+            matches[matchIdx].actualResult = res;
+            matches[matchIdx].locked = (status === "finished" || status === "live");
+          }
+          updatedCount++;
+        } else {
+          // Insert new match if it has necessary fields
+          if (teamA && teamB && kickoffTime) {
+            let res = result;
+            if (!res && scoreA !== undefined && scoreB !== undefined) {
+              if (scoreA > scoreB) res = "A_WIN";
+              else if (scoreA < scoreB) res = "B_WIN";
+              else res = "DRAW";
+            } else if (!res) {
+              res = "PENDING";
+            }
+            
+            matches.push({
+              id: matchId,
+              teamA: teamA,
+              teamAFlag: teamAFlag || "",
+              teamB: teamB,
+              teamBFlag: teamBFlag || "",
+              stage: stage || "",
+              status: status || "pending",
+              actualResult: res,
+              teamAScore: scoreA !== undefined ? scoreA : -1,
+              teamBScore: scoreB !== undefined ? scoreB : -1,
+              kickoffTime: kickoffTime,
+              locked: (status === "finished" || status === "live")
+            });
+            updatedCount++;
+          }
+        }
+      });
+      
+      if (updatedCount > 0) {
+        matches.sort((a, b) => a.id - b.id);
+        saveState();
+        alert(`🎉 ซิงค์ผลการแข่งขันสำเร็จ! อัปเดตข้อมูลแล้วทั้งหมด ${updatedCount} รายการ`);
+        renderApp();
+      } else {
+        alert("ไม่พบข้อมูลแมตช์การแข่งขันเพื่ออัปเดต");
+      }
+    }
+
+    function updateMatchKickoff(matchId, kickoffTimeStr) {
+      matches = matches.map(m => 
+        m.id === matchId ? { ...m, kickoffTime: kickoffTimeStr } : m
+      );
+      saveState();
+      renderApp();
+    }
+
+    function simulateTournament() {
+      matches = matches.map(match => {
+        const scoreA = Math.floor(Math.random() * 5); // 0..4
+        const scoreB = Math.floor(Math.random() * 5); // 0..4
+        let actualResult = "PENDING";
+        if (scoreA > scoreB) actualResult = "A_WIN";
+        else if (scoreA < scoreB) actualResult = "B_WIN";
+        else {
+          if (match.stage !== "รอบแบ่งกลุ่ม" && !match.stage.startsWith("รอบแบ่งกลุ่ม")) {
+            actualResult = Math.random() > 0.5 ? "A_WIN" : "B_WIN";
+          } else {
+            actualResult = "DRAW";
+          }
+        }
+        return { ...match, teamAScore: scoreA, teamBScore: scoreB, actualResult };
+      });
+      saveState();
+      renderApp();
+    }
+
+    function resetAllMatchResults() {
+      matches = matches.map(m => ({
+        ...m,
+        teamAScore: -1,
+        teamBScore: -1,
+        actualResult: "PENDING",
+        locked: false
+      }));
+      saveState();
+      renderApp();
+    }
+
+    // --- User Profile Handlers ---
+    function createNewUser(e) {
+      e.preventDefault();
+      const nameInput = document.getElementById('new-user-name');
+      const pinInput = document.getElementById('new-user-pin');
+      const championSelect = document.getElementById('new-user-champion');
+
+      const name = nameInput.value.trim();
+      const pin = pinInput.value.trim();
+      const champion = championSelect.value;
+
+      if (!name) return;
+
+      const newId = users.length > 0 ? Math.max(...users.map(u => u.id)) + 1 : 1;
+      const newUser = {
+        id: newId,
+        name: name,
+        colorHex: selectedColorHex,
+        championGuess: champion,
+        pin: pin,
+        isGoogleUser: false,
+        googleEmail: null
+      };
+
+      users.push(newUser);
+      selectedUserId = newId;
+      
+      // Reset & close
+      nameInput.value = '';
+      pinInput.value = '';
+      toggleAddUserModal(false);
+      saveState();
+      renderApp();
+    }
+
+    function deleteUser(userId) {
+      if (confirm("คุณแน่ใจว่าต้องการลบผู้เล่นนี้ใช่หรือไม่? คำทำนายทั้งหมดจะหายไป")) {
+        users = users.filter(u => u.id !== userId);
+        predictions = predictions.filter(p => p.userId !== userId);
+        
+        if (users.length > 0) {
+          selectedUserId = users[0].id;
+        } else {
+          selectedUserId = null;
+        }
+        saveState();
+        renderApp();
+      }
+    }
+
+    // Google Login Simulators
+    function selectGoogleMock(name, email, color) {
+      const existing = users.find(u => u.googleEmail?.trim().toLowerCase() === email.trim().toLowerCase());
+      if (existing) {
+        selectedUserId = existing.id;
+      } else {
+        const newId = users.length > 0 ? Math.max(...users.map(u => u.id)) + 1 : 1;
+        users.push({
+          id: newId,
+          name: name,
+          colorHex: color,
+          championGuess: "",
+          pin: "",
+          isGoogleUser: true,
+          googleEmail: email
+        });
+        selectedUserId = newId;
+      }
+      toggleGoogleModal(false);
+      saveState();
+      renderApp();
+    }
+
+    // --- Modal togglers ---
+    function toggleAddUserModal(show) {
+      const modal = document.getElementById('add-user-modal');
+      if (show) {
+        modal.classList.add('show');
+        loadAddUserFormOptions();
+      } else {
+        modal.classList.remove('show');
+      }
+    }
+
+    function toggleGoogleModal(show) {
+      const modal = document.getElementById('google-login-modal');
+      if (show) modal.classList.add('show');
+      else modal.classList.remove('show');
+    }
+
+    function openGoogleMockFromAdd() {
+      toggleAddUserModal(false);
+      toggleGoogleModal(true);
+    }
+
+    function togglePinAuthModal(show) {
+      const modal = document.getElementById('pin-auth-modal');
+      if (show) modal.classList.add('show');
+      else modal.classList.remove('show');
+    }
+
+    function toggleHelpModal(show) {
+      const modal = document.getElementById('help-modal');
+      if (show) modal.classList.add('show');
+      else modal.classList.remove('show');
+    }
+
+    function loadAddUserFormOptions() {
+      // Color Presets Loading
+      const colorContainer = document.getElementById('color-presets-container');
+      let colorHtml = '';
+      COLOR_PRESETS.forEach(color => {
+        const isSelected = selectedColorHex === color;
+        colorHtml += `
+          <div class="color-circle ${isSelected ? 'selected' : ''}" style="background: ${color}" onclick="selectColorPreset('${color}', this)"></div>
+        `;
+      });
+      colorContainer.innerHTML = colorHtml;
+
+      // Champions pool options
+      const champSelect = document.getElementById('new-user-champion');
+      let champHtml = '<option value="">-- ทายแชมป์ภายหลัง --</option>';
+      CHAMPIONS_POOL.forEach(team => {
+        champHtml += `<option value="${team.name}">${team.flag} ${team.name}</option>`;
+      });
+      champSelect.innerHTML = champHtml;
+    }
+
+    function selectColorPreset(color, elem) {
+      selectedColorHex = color;
+      const circles = document.querySelectorAll('.color-circle');
+      circles.forEach(c => c.classList.remove('selected'));
+      elem.classList.add('selected');
+    }
+
+    // --- Tab Controllers ---
+    function switchTab(tabIndex) {
+      activeTab = tabIndex;
+      const tabBtns = document.querySelectorAll('.tab-btn');
+      tabBtns.forEach((btn, index) => {
+        if (index === tabIndex) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+      renderApp();
+    }
+
+    function togglePendingFilter(checked) {
+      showOnlyPending = checked;
+      renderPredictionsTab();
+    }
+
+    // --- Date Formatters Helpers ---
+    function formatKickoffDate(isoStr) {
+      const d = new Date(isoStr);
+      const months = ["ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."];
+      return `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()} เวลา ${d.getHours().toString().padStart(2, '0')}:${d.getMinutes().toString().padStart(2, '0')} น.`;
+    }
+
+    async function syncScoresFromInternetSilently() {
+      const urlField = document.getElementById('sync-url-input');
+      const url = urlField ? urlField.value.trim() : 'live_scores.json';
+      try {
+        const response = await fetch(url);
+        if (!response.ok) return;
+        const data = await response.json();
+        if (data && data.matches) {
+          let stateChanged = false;
+          data.matches.forEach(m => {
+            const matchId = m.match_id || m.id;
+            if (matchId === undefined) return;
+            
+            const teamA = m.team_a || m.teamA;
+            const teamB = m.team_b || m.teamB;
+            const teamAFlag = m.team_a_flag || m.teamAFlag;
+            const teamBFlag = m.team_b_flag || m.teamBFlag;
+            const stage = m.stage;
+            const kickoffTime = m.kickoff_time || m.kickoffTime;
+            
+            const scoreA = m.team_a_score !== undefined ? m.team_a_score : m.score_a;
+            const scoreB = m.team_b_score !== undefined ? m.team_b_score : m.score_b;
+            const status = m.status || "finished";
+            const result = m.actual_result || m.result;
+            
+            const matchIdx = matches.findIndex(match => match.id === matchId);
+            
+            if (matchIdx > -1) {
+              const matchObj = matches[matchIdx];
+              let matchChanged = false;
+              
+              if (matches[matchIdx].teamA !== teamA) { matches[matchIdx].teamA = teamA; matchChanged = true; }
+              if (matches[matchIdx].teamB !== teamB) { matches[matchIdx].teamB = teamB; matchChanged = true; }
+              if (matches[matchIdx].teamAFlag !== teamAFlag) { matches[matchIdx].teamAFlag = teamAFlag; matchChanged = true; }
+              if (matches[matchIdx].teamBFlag !== teamBFlag) { matches[matchIdx].teamBFlag = teamBFlag; matchChanged = true; }
+              if (matches[matchIdx].stage !== stage) { matches[matchIdx].stage = stage; matchChanged = true; }
+              if (matches[matchIdx].kickoffTime !== kickoffTime) { matches[matchIdx].kickoffTime = kickoffTime; matchChanged = true; }
+              
+              if (scoreA !== undefined && scoreB !== undefined) {
+                if (matches[matchIdx].teamAScore !== scoreA) { matches[matchIdx].teamAScore = scoreA; matchChanged = true; }
+                if (matches[matchIdx].teamBScore !== scoreB) { matches[matchIdx].teamBScore = scoreB; matchChanged = true; }
+                if (matches[matchIdx].status !== status) { matches[matchIdx].status = status; matchChanged = true; }
+                
+                let res = result;
+                if (!res) {
+                  if (scoreA > scoreB) res = "A_WIN";
+                  else if (scoreA < scoreB) res = "B_WIN";
+                  else res = "DRAW";
+                }
+                if (matches[matchIdx].actualResult !== res) { matches[matchIdx].actualResult = res; matchChanged = true; }
+                
+                const expectedLock = (status === "finished" || status === "live");
+                if (matches[matchIdx].locked !== expectedLock) { matches[matchIdx].locked = expectedLock; matchChanged = true; }
+              }
+              
+              if (matchChanged) stateChanged = true;
+            } else {
+              if (teamA && teamB && kickoffTime) {
+                let res = result;
+                if (!res && scoreA !== undefined && scoreB !== undefined) {
+                  if (scoreA > scoreB) res = "A_WIN";
+                  else if (scoreA < scoreB) res = "B_WIN";
+                  else res = "DRAW";
+                } else if (!res) {
+                  res = "PENDING";
+                }
+                
+                matches.push({
+                  id: matchId,
+                  teamA: teamA,
+                  teamAFlag: teamAFlag || "",
+                  teamB: teamB,
+                  teamBFlag: teamBFlag || "",
+                  stage: stage || "",
+                  status: status || "pending",
+                  actualResult: res,
+                  teamAScore: scoreA !== undefined ? scoreA : -1,
+                  teamBScore: scoreB !== undefined ? scoreB : -1,
+                  kickoffTime: kickoffTime,
+                  locked: (status === "finished" || status === "live")
+                });
+                stateChanged = true;
+              }
+            }
+          });
+          
+          if (stateChanged) {
+            matches.sort((a, b) => a.id - b.id);
+            saveState();
+            renderApp();
+          }
+        }
+      } catch (err) {
+        console.log("Background sync silently ignored:", err.message);
+      }
+    }
+
+    // Page Load Init
+    window.onload = function() {
+      renderApp();
+      syncScoresFromInternetSilently();
+    };
+  </script>
+</body>
+</html>
